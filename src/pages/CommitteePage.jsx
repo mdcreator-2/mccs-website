@@ -162,12 +162,12 @@ function DelegationMatrix({ p5, e10, invited }) {
         </div>
       </div>
 
-      {/* Invited */}
+      {/* Invited Members */}
       <div className="mt-16">
         <ScrollReveal direction="up">
           <SectionHeading
-            title="Invited Members"
-            subtitle="Non-member states invited to participate in Security Council deliberations on this agenda."
+            title="Invited Members (Observer States)"
+            subtitle="States invited to participate in Security Council deliberations on this agenda (no voting rights)."
           />
         </ScrollReveal>
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-4">

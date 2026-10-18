@@ -1,6 +1,6 @@
 /**
  * UNSC Country Data for MCCS Simulation
- * 19 total delegations: 5 Permanent (P5), 10 Non-Permanent (E10), 4 Invited Members
+ * 19 total delegations: 5 Permanent (P5), 10 Elected Members (E10), 4 Observer States (no voting rights)
  */
 
 export const unscCountries = [
@@ -41,27 +41,27 @@ export const unscCountries = [
     flag: 'https://flagcdn.com/w320/cn.png',
   },
 
-  // E10 Members (Non-Permanent, elected, NO veto)
-  {
-    name: 'Japan',
-    code: 'JP',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/jp.png',
-  },
-  {
-    name: 'Brazil',
-    code: 'BR',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/br.png',
-  },
+  // Elected Members (Non-Permanent, elected, NO veto)
   {
     name: 'India',
     code: 'IN',
     type: 'E10',
     veto: false,
     flag: 'https://flagcdn.com/w320/in.png',
+  },
+  {
+    name: 'Italy',
+    code: 'IT',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/it.png',
+  },
+  {
+    name: 'Argentina',
+    code: 'AR',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/ar.png',
   },
   {
     name: 'Germany',
@@ -71,6 +71,34 @@ export const unscCountries = [
     flag: 'https://flagcdn.com/w320/de.png',
   },
   {
+    name: 'Qatar',
+    code: 'QA',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/qa.png',
+  },
+  {
+    name: 'Saudi Arabia',
+    code: 'SA',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/sa.png',
+  },
+  {
+    name: 'Egypt',
+    code: 'EG',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/eg.png',
+  },
+  {
+    name: 'Japan',
+    code: 'JP',
+    type: 'E10',
+    veto: false,
+    flag: 'https://flagcdn.com/w320/jp.png',
+  },
+  {
     name: 'South Africa',
     code: 'ZA',
     type: 'E10',
@@ -78,69 +106,45 @@ export const unscCountries = [
     flag: 'https://flagcdn.com/w320/za.png',
   },
   {
-    name: 'Mexico',
-    code: 'MX',
+    name: 'Spain',
+    code: 'ES',
     type: 'E10',
     veto: false,
-    flag: 'https://flagcdn.com/w320/mx.png',
-  },
-  {
-    name: 'Nigeria',
-    code: 'NG',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/ng.png',
-  },
-  {
-    name: 'Turkey',
-    code: 'TR',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/tr.png',
-  },
-  {
-    name: 'Australia',
-    code: 'AU',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/au.png',
-  },
-  {
-    name: 'South Korea',
-    code: 'KR',
-    type: 'E10',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/kr.png',
+    flag: 'https://flagcdn.com/w320/es.png',
   },
 
-  // Invited Members (Special non-member status, no veto, restricted voting)
+  // Invited Members (Observer states, no voting rights)
   {
     name: 'Israel',
     code: 'IL',
     type: 'Invited',
     veto: false,
+    voting: false,
     flag: 'https://flagcdn.com/w320/il.png',
-  },
-  {
-    name: 'Iran',
-    code: 'IR',
-    type: 'Invited',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/ir.png',
-  },
-  {
-    name: 'Lebanon',
-    code: 'LB',
-    type: 'Invited',
-    veto: false,
-    flag: 'https://flagcdn.com/w320/lb.png',
   },
   {
     name: 'Palestine',
     code: 'PS',
     type: 'Invited',
     veto: false,
+    voting: false,
     flag: 'https://flagcdn.com/w320/ps.png',
+  },
+  {
+    name: 'Lebanon',
+    code: 'LB',
+    type: 'Invited',
+    veto: false,
+    voting: false,
+    flag: 'https://flagcdn.com/w320/lb.png',
+  },
+  {
+    name: 'Iran',
+    code: 'IR',
+    type: 'Invited',
+    veto: false,
+    voting: false,
+    flag: 'https://flagcdn.com/w320/ir.png',
   },
 ];
 
