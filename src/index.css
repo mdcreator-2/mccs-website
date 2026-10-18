@@ -47,4 +47,15 @@ body {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
+
+  /* Country card flag overlay: always visible on phones and touch devices */
+  @media (max-width: 767px), (hover: none) {
+    .country-flag-overlay {
+      width: 100% !important;
+      opacity: 0.15 !important;
+    }
+    .country-card-title {
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7) !important;
+    }
+  }
 }
