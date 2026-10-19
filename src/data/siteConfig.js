@@ -23,18 +23,18 @@ export const siteConfig = {
       name: 'United Nations Security Council',
       abbreviation: 'UNSC',
       agenda:
-        'Escalation to Total Regional Conflict: Addressing the Israel-Palestine War, Hezbollah Involvement, and Iranian Aggression in the Middle East.',
+        'The situation in the Middle East: Palestine and Lebanon. Securing a lasting ceasefire and humanitarian access and implementation of the two state solution.',
       date: '31 October 2026',
       delegationType: 'Dual Delegation',
-      totalDelegations: 19,
+      totalDelegations: 20,
     },
     aippm: {
       name: 'All India Political Parties Meet',
       abbreviation: 'AIPPM',
-      agenda: 'To be announced',
+      agenda: 'Delimitation of Parliamentary and Assembly constituencies after the upcoming Census.',
       date: '1 November 2026',
       delegationType: 'Single Delegation',
-      totalDelegations: 12,
+      totalDelegations: 26,
     },
   },
 };

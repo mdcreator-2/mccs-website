@@ -76,20 +76,10 @@ function CommitteePage({ committee }) {
                   value={config.date}
                 />
                 <DetailRow
-                  icon={<Shield size={18} />}
-                  label="Total Delegations"
-                  value={config.totalDelegations}
-                />
-                <DetailRow
                   icon={<MapPin size={18} />}
                   label="Venue"
                   value={siteConfig.venue}
                   sub={`Specific Venue: ${siteConfig.venueSpecific}`}
-                />
-                <DetailRow
-                  icon={<Users size={18} />}
-                  label="Quorum"
-                  value={`${Math.ceil(config.totalDelegations / 2)} delegations (simple majority)`}
                 />
               </ul>
             </div>

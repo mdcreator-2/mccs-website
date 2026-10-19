@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { Users } from 'lucide-react';
 
 const typeBadgeStyles = {
+  nda: 'bg-amber-600/90 text-white',
+  india: 'bg-blue-600/90 text-white',
+  unaligned: 'bg-slate-600/90 text-white',
   ruling: 'bg-success text-white',
   opposition: 'bg-primary-light text-white',
   'ruling-ally': 'bg-accent-gold text-white',
@@ -10,6 +13,9 @@ const typeBadgeStyles = {
 };
 
 const typeLabels = {
+  nda: 'NDA',
+  india: 'INDIA Bloc',
+  unaligned: 'Unaligned',
   ruling: 'Ruling',
   opposition: 'Opposition',
   'ruling-ally': 'Ruling Ally',
@@ -57,9 +63,8 @@ function PartyCard({ party, index = 0 }) {
         {/* Top row: Type badge */}
         <div className="flex items-start justify-between">
           <span
-            className={`inline-block rounded px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-wider ${
-              typeBadgeStyles[party.type] || typeBadgeStyles.regional
-            }`}
+            className={`inline-block rounded px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-wider ${typeBadgeStyles[party.type] || typeBadgeStyles.regional
+              }`}
           >
             {typeLabels[party.type] || party.type}
           </span>
@@ -83,9 +88,7 @@ function PartyCard({ party, index = 0 }) {
           >
             {party.name}
           </h3>
-          <p className="mt-1 font-body text-sm text-text-secondary">
-            Leader: {party.leader}
-          </p>
+
         </div>
       </div>
     </motion.div>
