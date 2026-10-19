@@ -26,12 +26,18 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-primary-dark/95 backdrop-blur-md border-b border-accent-gold/20">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group" aria-label="NIT Patna MUN MCCS Home">
+        {/* Brand Logo: NIT Patna */}
+        <Link
+          to="/"
+          className="group relative flex items-center justify-center"
+          aria-label="NIT Patna MCCS Home"
+        >
+          {/* Ambient gold glow behind the emblem */}
+          <div className="pointer-events-none absolute -inset-1 rounded-full bg-accent-gold/15 blur-md transition-all duration-300 group-hover:bg-accent-gold/30 group-hover:blur-lg" />
           <img
-            src="/Logo-mun-white.webp"
-            alt="NIT Patna MUN Logo"
-            className="h-11 w-11 sm:h-12 sm:w-12 object-contain transition-transform duration-300 group-hover:scale-105"
+            src="/nitp_logo_modified-Photoroom.png"
+            alt="National Institute of Technology Patna Logo"
+            className="relative z-10 h-10 w-10 sm:h-11 sm:w-11 object-contain drop-shadow-[0_0_10px_rgba(184,151,106,0.5)] transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
@@ -70,10 +76,9 @@ function Navbar() {
                             to={child.to}
                             onClick={() => setCommitteesOpen(false)}
                             className={({ isActive }) =>
-                              `block px-4 py-2 text-sm transition-colors ${
-                                isActive
-                                  ? 'bg-accent-gold/10 font-semibold text-accent-gold'
-                                  : 'text-white/70 hover:bg-accent-gold/10 hover:text-accent-gold'
+                              `block px-4 py-2 text-sm transition-colors ${isActive
+                                ? 'bg-accent-gold/10 font-semibold text-accent-gold'
+                                : 'text-white/70 hover:bg-accent-gold/10 hover:text-accent-gold'
                               }`
                             }
                           >
@@ -91,10 +96,9 @@ function Navbar() {
                   to={link.to}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `text-sm font-sans font-medium transition-colors ${
-                      isActive
-                        ? 'text-accent-gold'
-                        : 'text-white/70 hover:text-accent-gold'
+                    `text-sm font-sans font-medium transition-colors ${isActive
+                      ? 'text-accent-gold'
+                      : 'text-white/70 hover:text-accent-gold'
                     }`
                   }
                 >
@@ -148,10 +152,9 @@ function Navbar() {
                         to={child.to}
                         onClick={() => setMobileOpen(false)}
                         className={({ isActive }) =>
-                          `block rounded-md py-2 pl-4 text-sm font-body transition-colors ${
-                            isActive
-                              ? 'font-semibold text-accent-gold'
-                              : 'text-white/70 hover:text-accent-gold'
+                          `block rounded-md py-2 pl-4 text-sm font-body transition-colors ${isActive
+                            ? 'font-semibold text-accent-gold'
+                            : 'text-white/70 hover:text-accent-gold'
                           }`
                         }
                       >
@@ -166,10 +169,9 @@ function Navbar() {
                       end={link.to === '/'}
                       onClick={() => setMobileOpen(false)}
                       className={({ isActive }) =>
-                        `block rounded-md py-2 text-sm font-body font-medium transition-colors ${
-                          isActive
-                            ? 'text-accent-gold'
-                            : 'text-white/70 hover:text-accent-gold'
+                        `block rounded-md py-2 text-sm font-body font-medium transition-colors ${isActive
+                          ? 'text-accent-gold'
+                          : 'text-white/70 hover:text-accent-gold'
                         }`
                       }
                     >

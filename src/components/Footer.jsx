@@ -87,7 +87,6 @@ function Footer() {
                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-accent-gold/70" />
                 <div>
                   <span className="block font-body font-medium text-white/90">{siteConfig.venue}</span>
-                  <span className="block font-body text-xs text-white/40">Specific Hall: {siteConfig.venueSpecific}</span>
                 </div>
               </li>
               <li className="flex items-center gap-2">

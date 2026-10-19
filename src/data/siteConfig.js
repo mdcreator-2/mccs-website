@@ -7,16 +7,15 @@ export const siteConfig = {
   eventFullName: 'Model Conferences and Committee Simulation',
   tagline: 'Organized by Expresso Club, NIT Patna',
   venue: 'NIT Patna, Bihta Campus',
-  venueSpecific: 'To Be Announced',
   dates: {
     unsc: new Date('2026-10-31T08:30:00+05:30'),
     aippm: new Date('2026-11-01T08:30:00+05:30'),
   },
   registrationUrl: '#', // placeholder
   contact: {
-    email: 'mccs@nitpatna.ac.in', // placeholder
-    instagram: '#',
-    linkedin: '#',
+    email: 'taha.yaseen.cse@gmail.com', // placeholder
+    instagram: 'https://www.instagram.com/expresso_nitp/',
+    linkedin: 'https://www.linkedin.com/company/expressonitp/',
   },
   committees: {
     unsc: {
