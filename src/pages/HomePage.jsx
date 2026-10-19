@@ -171,23 +171,66 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden">
       {/* ──────────────────── Hero Section ──────────────────── */}
-      <section className="linen-texture relative flex min-h-screen items-center justify-center bg-ink px-4">
-        {/* Radial warm glow */}
+      <section className="relative flex min-h-screen items-center justify-center bg-ink px-4 overflow-hidden">
+        {/* Luminous Gold Global Network Map Background */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <motion.img
+            src="/Luminous%20Gold%20Global%20Network%20Map.png"
+            alt=""
+            aria-hidden="true"
+            initial={{ scale: 1.08, opacity: 0 }}
+            animate={{
+              scale: [1.02, 1.05, 1.02],
+              opacity: [0.5, 0.6, 0.5],
+            }}
+            transition={{
+              scale: { duration: 24, repeat: Infinity, ease: 'easeInOut' },
+              opacity: { duration: 12, repeat: Infinity, ease: 'easeInOut' },
+            }}
+            className="h-full w-full object-cover object-center select-none"
+          />
+        </div>
+
+        {/* Atmospheric Depth & Vignette Overlays */}
+        {/* Top fade for seamless header integration */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink via-ink/60 to-transparent z-[1]" />
+
+        {/* Bottom fade for seamless transition to countdown section (bg-primary) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-primary via-ink/80 to-transparent z-[1]" />
+
+        {/* Radial focus vignette: preserves text and emblem contrast while network glows around */}
         <div
-          className="pointer-events-none absolute inset-0 z-[2]"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 40%, rgba(184,151,106,0.06) 0%, transparent 70%)',
+              'radial-gradient(ellipse 75% 65% at 50% 48%, rgba(15,25,35,0.45) 0%, rgba(15,25,35,0.78) 65%, #0F1923 100%)',
           }}
         />
 
-        {/* Subtle corner ornaments */}
-        <div className="pointer-events-none absolute top-8 left-8 z-[2] h-16 w-16 border-l border-t border-accent-gold/20" />
-        <div className="pointer-events-none absolute top-8 right-8 z-[2] h-16 w-16 border-r border-t border-accent-gold/20" />
-        <div className="pointer-events-none absolute bottom-8 left-8 z-[2] h-16 w-16 border-l border-b border-accent-gold/20" />
-        <div className="pointer-events-none absolute bottom-8 right-8 z-[2] h-16 w-16 border-r border-b border-accent-gold/20" />
+        {/* Warm golden ambient core light radiating behind emblem */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              'radial-gradient(circle 380px at 50% 42%, rgba(184,151,106,0.14) 0%, transparent 70%)',
+          }}
+        />
 
-        <div className="relative z-10 flex flex-col items-center text-center">
+        {/* Diplomatic Framing: Refined corner ornaments */}
+        <div className="pointer-events-none absolute top-8 left-8 z-[2] h-16 w-16 border-l border-t border-accent-gold/30">
+          <span className="absolute -top-1 -left-1 h-2 w-2 rounded-full bg-accent-gold/40" />
+        </div>
+        <div className="pointer-events-none absolute top-8 right-8 z-[2] h-16 w-16 border-r border-t border-accent-gold/30">
+          <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-accent-gold/40" />
+        </div>
+        <div className="pointer-events-none absolute bottom-8 left-8 z-[2] h-16 w-16 border-l border-b border-accent-gold/30">
+          <span className="absolute -bottom-1 -left-1 h-2 w-2 rounded-full bg-accent-gold/40" />
+        </div>
+        <div className="pointer-events-none absolute bottom-8 right-8 z-[2] h-16 w-16 border-r border-b border-accent-gold/30">
+          <span className="absolute -bottom-1 -right-1 h-2 w-2 rounded-full bg-accent-gold/40" />
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto py-20">
           {/* Gold accent rule above title */}
           <motion.div
             initial={{ scaleX: 0 }}
@@ -204,12 +247,12 @@ export default function HomePage() {
             className="relative my-2 flex items-center justify-center"
           >
             {/* Ambient gold glow behind the emblem */}
-            <div className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent-gold/20 blur-3xl md:h-80 md:w-80" />
+            <div className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent-gold/25 blur-3xl md:h-80 md:w-80" />
             <h1 className="sr-only">MCCS 2026 — NIT Patna MUN</h1>
             <img
               src="/Logo-mun-gold.webp"
               alt="NIT Patna MUN Golden Emblem"
-              className="relative z-10 h-64 w-64 sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96 object-contain drop-shadow-[0_0_35px_rgba(184,151,106,0.35)] transition-transform duration-500 hover:scale-[1.02]"
+              className="relative z-10 h-64 w-64 sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96 object-contain drop-shadow-[0_0_40px_rgba(184,151,106,0.4)] transition-transform duration-500 hover:scale-[1.02]"
             />
           </motion.div>
 
@@ -218,13 +261,13 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="mt-6 h-8"
+            className="mt-6 min-h-[2rem] flex items-center justify-center"
           >
-            <span className="font-body text-base md:text-lg text-white/70 tracking-wide">
+            <span className="font-body text-base md:text-lg text-white/90 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               {displayText}
             </span>
             <span
-              className={`ml-0.5 inline-block w-[2px] h-5 bg-accent-gold align-middle transition-opacity duration-100 ${
+              className={`ml-1 inline-block w-[2px] h-5 bg-accent-gold align-middle transition-opacity duration-100 ${
                 cursorVisible ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -235,16 +278,16 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-4 flex items-center justify-center gap-2.5 font-body text-sm text-white/50 tracking-wide"
+            className="mt-4 flex items-center justify-center gap-2.5 font-body text-sm text-white/70 tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]"
           >
             <span>Organized by</span>
             <img
               src="/expresso-logo.webp"
               alt="Expresso Club Logo"
-              className="h-6 w-auto inline-block object-contain opacity-90 transition-opacity hover:opacity-100"
+              className="h-6 w-auto inline-block object-contain opacity-95 transition-opacity hover:opacity-100"
             />
-            <span className="font-semibold text-white/80">Expresso Club</span>
-            <span className="text-white/30">·</span>
+            <span className="font-semibold text-white/90">Expresso Club</span>
+            <span className="text-white/40">·</span>
             <span>NIT Patna</span>
           </motion.div>
 
@@ -253,7 +296,7 @@ export default function HomePage() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 1.4, duration: 0.6, ease: 'easeOut' }}
-            className="mt-8 h-px w-16 origin-center bg-accent-gold/40"
+            className="mt-8 h-px w-16 origin-center bg-accent-gold/50"
           />
 
           {/* CTA Buttons */}
