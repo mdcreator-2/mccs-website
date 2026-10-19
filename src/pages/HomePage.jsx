@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Landmark } from 'lucide-react';
+import { Shield, Landmark, ArrowRight } from 'lucide-react';
 
 import ScrollReveal from '../components/ui/ScrollReveal';
 import GlowButton from '../components/ui/GlowButton';
@@ -20,7 +20,7 @@ const COMMITTEES = [
     name: siteConfig.committees.unsc.name,
     abbr: siteConfig.committees.unsc.abbreviation,
     icon: Shield,
-    borderColor: 'border-accent-gold',
+    accentColor: '#B8976A',
     delegation: siteConfig.committees.unsc.delegationType,
     date: siteConfig.committees.unsc.date,
     totalDelegations: siteConfig.committees.unsc.totalDelegations,
@@ -31,7 +31,7 @@ const COMMITTEES = [
     name: siteConfig.committees.aippm.name,
     abbr: siteConfig.committees.aippm.abbreviation,
     icon: Landmark,
-    borderColor: 'border-success',
+    accentColor: '#2D6A4F',
     delegation: siteConfig.committees.aippm.delegationType,
     date: siteConfig.committees.aippm.date,
     totalDelegations: siteConfig.committees.aippm.totalDelegations,
@@ -50,14 +50,11 @@ const STATS = [
 
 function FlipDigit({ value }) {
   const [prev, setPrev] = useState(value);
-  const [flipping, setFlipping] = useState(false);
 
   useEffect(() => {
     if (value !== prev) {
-      setFlipping(true);
       const t = setTimeout(() => {
         setPrev(value);
-        setFlipping(false);
       }, 300);
       return () => clearTimeout(t);
     }
@@ -86,13 +83,15 @@ function FlipDigit({ value }) {
 
 function CountdownBox({ value, label }) {
   return (
-    <div className="flex flex-col items-center bg-white/10 backdrop-blur rounded-xl p-6 min-w-[100px]">
-      <span className="text-5xl md:text-6xl font-bold font-mono text-white tracking-tight">
-        {value.split('').map((digit, i) => (
-          <FlipDigit key={`${label}-${i}`} value={digit} />
-        ))}
-      </span>
-      <span className="mt-2 text-sm uppercase tracking-widest text-white/70">
+    <div className="flex flex-col items-center">
+      <div className="flex items-center justify-center rounded bg-white/[0.06] px-5 py-4 min-w-[90px] md:min-w-[110px] border border-white/[0.08]">
+        <span className="text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">
+          {value.split('').map((digit, i) => (
+            <FlipDigit key={`${label}-${i}`} value={digit} />
+          ))}
+        </span>
+      </div>
+      <span className="mt-3 text-[11px] font-sans uppercase tracking-[0.2em] text-accent-gold/80">
         {label}
       </span>
     </div>
@@ -106,38 +105,44 @@ function CommitteeCard({ committee }) {
 
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -6 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`bg-surface rounded-2xl border border-border border-l-4 ${committee.borderColor} p-8 hover:shadow-xl transition-shadow`}
+      className="group relative overflow-hidden rounded-lg border border-border bg-surface p-8 transition-shadow duration-300 hover:shadow-xl"
     >
-      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/5">
-        <Icon className="w-6 h-6 text-primary" />
+      {/* Subtle accent line at top */}
+      <div
+        className="absolute inset-x-0 top-0 h-[2px]"
+        style={{ backgroundColor: committee.accentColor }}
+      />
+
+      <div className="mb-5 inline-flex items-center justify-center w-11 h-11 rounded bg-primary/[0.06]">
+        <Icon className="w-5 h-5 text-primary" />
       </div>
-      <h3 className="font-serif text-2xl font-bold text-primary mb-1">
+      <h3 className="font-serif text-2xl font-bold text-primary mb-1 tracking-tight">
         {committee.abbr}
       </h3>
-      <p className="text-text-secondary text-sm mb-4">{committee.name}</p>
-      <ul className="space-y-2 text-sm text-text-secondary mb-6">
-        <li className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+      <p className="font-body text-text-secondary text-sm mb-5">{committee.name}</p>
+      <ul className="space-y-2.5 text-sm font-body text-text-secondary mb-7">
+        <li className="flex items-center gap-2.5">
+          <span className="w-1 h-1 rounded-full bg-accent-gold" />
           {committee.delegation}
         </li>
-        <li className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+        <li className="flex items-center gap-2.5">
+          <span className="w-1 h-1 rounded-full bg-accent-gold" />
           {committee.date}
         </li>
-        <li className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+        <li className="flex items-center gap-2.5">
+          <span className="w-1 h-1 rounded-full bg-accent-gold" />
           {committee.totalDelegations} Delegations
         </li>
       </ul>
-      <GlowButton
-        to={committee.link}
-        variant="outline"
-        className="!px-5 !py-2 !text-accent-gold !border-accent-gold hover:!bg-accent-gold/5 text-sm"
+      <a
+        href={committee.link}
+        className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-accent-gold transition-all group-hover:gap-3"
       >
-        View Details →
-      </GlowButton>
+        View Details
+        <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+      </a>
     </motion.div>
   );
 }
@@ -166,33 +171,37 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden">
       {/* ──────────────────── Hero Section ──────────────────── */}
-      <section
-        className="relative flex min-h-screen items-center justify-center px-4"
-        style={{
-          background: `
-            radial-gradient(ellipse at center, rgba(250,250,248,1) 0%, rgba(245,245,240,1) 100%),
-            linear-gradient(rgba(27,58,92,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(27,58,92,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '100% 100%, 40px 40px, 40px 40px',
-        }}
-      >
-        {/* Subtle radial overlay */}
+      <section className="linen-texture relative flex min-h-screen items-center justify-center bg-ink px-4">
+        {/* Radial warm glow */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 z-[2]"
           style={{
             background:
-              'radial-gradient(circle at 50% 45%, transparent 30%, rgba(27,58,92,0.02) 100%)',
+              'radial-gradient(ellipse 70% 50% at 50% 40%, rgba(184,151,106,0.06) 0%, transparent 70%)',
           }}
         />
 
+        {/* Subtle corner ornaments */}
+        <div className="pointer-events-none absolute top-8 left-8 z-[2] h-16 w-16 border-l border-t border-accent-gold/20" />
+        <div className="pointer-events-none absolute top-8 right-8 z-[2] h-16 w-16 border-r border-t border-accent-gold/20" />
+        <div className="pointer-events-none absolute bottom-8 left-8 z-[2] h-16 w-16 border-l border-b border-accent-gold/20" />
+        <div className="pointer-events-none absolute bottom-8 right-8 z-[2] h-16 w-16 border-r border-b border-accent-gold/20" />
+
         <div className="relative z-10 flex flex-col items-center text-center">
-          {/* MCCS Title */}
+          {/* Gold accent rule above title */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="mb-6 h-px w-24 origin-center bg-accent-gold/60"
+          />
+
+          {/* MCCS Title — large and commanding */}
           <motion.h1
-            initial={{ opacity: 0, scale: 0.88, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="font-serif text-7xl md:text-8xl lg:text-9xl font-bold text-primary tracking-[0.15em]"
+            className="font-serif text-8xl md:text-9xl lg:text-[11rem] font-bold text-white tracking-[0.12em] leading-none"
           >
             MCCS
           </motion.h1>
@@ -202,13 +211,13 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="mt-4 h-8"
+            className="mt-5 h-8"
           >
-            <span className="font-sans text-lg md:text-xl text-text-secondary">
+            <span className="font-body text-base md:text-lg text-white/60 tracking-wide">
               {displayText}
             </span>
             <span
-              className={`ml-0.5 inline-block w-[2px] h-5 bg-text-secondary align-middle transition-opacity duration-100 ${
+              className={`ml-0.5 inline-block w-[2px] h-5 bg-accent-gold align-middle transition-opacity duration-100 ${
                 cursorVisible ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -219,11 +228,19 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-3 text-sm text-text-secondary/70 tracking-wide"
+            className="mt-3 font-body text-sm text-white/40 tracking-wide"
           >
-            Organized by <span className="font-semibold">Expresso Club</span>,
+            Organized by <span className="font-semibold text-white/60">Expresso Club</span>,
             NIT Patna
           </motion.p>
+
+          {/* Gold accent rule below text */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 1.4, duration: 0.6, ease: 'easeOut' }}
+            className="mt-8 h-px w-16 origin-center bg-accent-gold/40"
+          />
 
           {/* CTA Buttons */}
           <motion.div
@@ -232,10 +249,10 @@ export default function HomePage() {
             transition={{ delay: 1.6, duration: 0.6 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <GlowButton to="/committees/unsc" variant="primary">
+            <GlowButton to="/committees/unsc" variant="gold">
               Explore Committees
             </GlowButton>
-            <GlowButton href={siteConfig.registrationUrl} variant="gold">
+            <GlowButton href={siteConfig.registrationUrl} variant="outline">
               Register Now
             </GlowButton>
           </motion.div>
@@ -246,11 +263,12 @@ export default function HomePage() {
       <ScrollReveal>
         <section className="bg-primary py-20 px-4">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-10 font-serif text-3xl md:text-4xl font-bold text-white">
+            <h2 className="mb-3 font-serif text-3xl md:text-4xl font-bold text-white tracking-tight">
               The Simulation Begins In
             </h2>
+            <div className="mx-auto mb-10 h-px w-12 bg-accent-gold/40" />
 
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <div className="flex flex-wrap items-start justify-center gap-4 md:gap-8">
               <CountdownBox value={days} label="Days" />
               <CountdownBox value={hours} label="Hours" />
               <CountdownBox value={minutes} label="Minutes" />
@@ -258,11 +276,11 @@ export default function HomePage() {
             </div>
 
             {/* Event dates & Venue */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-white/80">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4 font-body text-sm text-white/50">
               <span>31 Oct — UNSC</span>
-              <span className="h-4 w-px bg-accent-gold" />
+              <span className="h-3 w-px bg-accent-gold/40" />
               <span>1 Nov — AIPPM</span>
-              <span className="h-4 w-px bg-accent-gold" />
+              <span className="h-3 w-px bg-accent-gold/40" />
               <span>{siteConfig.venue}</span>
             </div>
           </div>
@@ -271,8 +289,8 @@ export default function HomePage() {
 
       {/* ──────────────────── Event Overview Cards ──────────────────── */}
       <ScrollReveal>
-        <section className="py-24 px-4 bg-background">
-          <div className="mx-auto max-w-5xl">
+        <section className="py-24 px-4 bg-background paper-texture">
+          <div className="mx-auto max-w-5xl relative z-10">
             <SectionHeading
               title="Two Committees, One Experience"
               subtitle="Choose your arena — global diplomacy or national politics."
@@ -294,15 +312,15 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* ──────────────────── Highlights Bar ──────────────────── */}
-      <section className="bg-primary/5 py-20 px-4">
+      <section className="bg-ink py-20 px-4">
         <div className="mx-auto max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STATS.map((stat, i) => (
             <ScrollReveal key={stat.label} direction="up" delay={i * 0.1}>
               <div>
-                <span className="font-serif text-4xl font-bold text-primary">
+                <span className="font-serif text-4xl font-bold text-white">
                   {stat.value}
                 </span>
-                <p className="mt-1 text-sm text-text-secondary">
+                <p className="mt-2 font-sans text-xs uppercase tracking-[0.2em] text-accent-gold/70">
                   {stat.label}
                 </p>
               </div>
@@ -313,28 +331,20 @@ export default function HomePage() {
 
       {/* ──────────────────── Call to Action ──────────────────── */}
       <ScrollReveal>
-        <section
-          className="py-24 px-4"
-          style={{
-            background: 'linear-gradient(135deg, #1B3A5C 0%, #2E5D8C 100%)',
-          }}
-        >
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-4 font-serif text-3xl md:text-5xl font-bold text-white">
+        <section className="relative py-24 px-4 bg-background paper-texture overflow-hidden">
+          <div className="mx-auto max-w-3xl text-center relative z-10">
+            <h2 className="mb-4 font-serif text-3xl md:text-5xl font-bold text-primary tracking-tight">
               Ready to Represent Your Nation?
             </h2>
-            <p className="mb-10 text-lg text-white/80">
+            <div className="mx-auto mt-4 mb-6 h-px w-16 bg-accent-gold/50" />
+            <p className="mb-10 font-body text-lg text-text-secondary">
               Join the most prestigious diplomatic simulation at NIT Patna
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <GlowButton href={siteConfig.registrationUrl} variant="gold">
                 Register Now
               </GlowButton>
-              <GlowButton
-                to="/rulebook"
-                variant="outline"
-                className="!border-white !text-white hover:!bg-white/10"
-              >
+              <GlowButton to="/rulebook" variant="primary">
                 View Rulebook
               </GlowButton>
             </div>

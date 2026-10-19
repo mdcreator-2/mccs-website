@@ -46,20 +46,21 @@ function CommitteePage({ committee }) {
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-16">
           {/* Left — Name & Description (3 cols) */}
           <ScrollReveal direction="left" className="lg:col-span-3">
-            <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.25em] text-accent-gold">
+            <span className="mb-3 block text-xs font-sans font-semibold uppercase tracking-[0.25em] text-accent-gold">
               {config.abbreviation}
             </span>
-            <h1 className="font-serif text-3xl font-bold leading-tight text-text-primary md:text-4xl lg:text-5xl">
+            <h1 className="font-serif text-3xl font-bold leading-tight text-text-primary md:text-4xl lg:text-5xl tracking-tight">
               {config.name}
             </h1>
-            <p className="mt-6 max-w-2xl leading-relaxed text-text-secondary">
+            <div className="mt-4 h-px w-16 bg-accent-gold/40" />
+            <p className="mt-6 max-w-2xl font-body leading-relaxed text-text-secondary">
               {COMMITTEE_DESCRIPTIONS[committee]}
             </p>
           </ScrollReveal>
 
           {/* Right — Key Details Card (2 cols) */}
           <ScrollReveal direction="right" delay={0.15} className="lg:col-span-2">
-            <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">
+            <div className="rounded-lg border border-border bg-surface p-6 shadow-sm">
               <h3 className="mb-5 font-serif text-lg font-semibold text-text-primary">
                 Key Details
               </h3>
@@ -104,19 +105,21 @@ function CommitteePage({ committee }) {
       )}
 
       {/* ───── Bottom CTA ───── */}
-      <section className="border-t border-border bg-surface py-16 text-center">
+      <section className="bg-ink py-16 text-center">
+        <div className="gold-rule mb-16" />
         <ScrollReveal direction="scale">
-          <h2 className="font-serif text-2xl font-bold text-text-primary md:text-3xl">
+          <h2 className="font-serif text-2xl font-bold text-white md:text-3xl tracking-tight">
             Ready to Represent?
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-text-secondary">
+          <div className="mx-auto mt-4 h-px w-12 bg-accent-gold/40" />
+          <p className="mx-auto mt-4 max-w-lg font-body text-white/60">
             Secure your delegation and step into the world of diplomacy and debate.
           </p>
           <motion.a
             href={siteConfig.registrationUrl}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent-gold px-8 py-3 font-semibold text-white shadow-md transition-colors hover:bg-accent-gold/90"
+            className="mt-8 inline-flex items-center gap-2 rounded border border-accent-gold px-8 py-3 font-sans font-semibold text-accent-gold transition-all hover:bg-accent-gold hover:text-primary-dark"
           >
             Register Now
             <ArrowRight size={18} />
@@ -205,16 +208,16 @@ function PartyMatrix({ parties }) {
 function DetailRow({ icon, label, value, sub }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="mt-0.5 flex-shrink-0 text-accent-gold">{icon}</span>
+      <span className="mt-0.5 flex-shrink-0 text-accent-gold/70">{icon}</span>
       <div>
-        <span className="block text-xs font-medium uppercase tracking-wider text-text-secondary">
+        <span className="block text-xs font-sans font-medium uppercase tracking-wider text-text-secondary">
           {label}
         </span>
-        <span className="mt-0.5 block font-medium text-text-primary">
+        <span className="mt-0.5 block font-body font-medium text-text-primary">
           {value}
         </span>
         {sub && (
-          <span className="mt-0.5 block text-xs text-text-secondary">
+          <span className="mt-0.5 block font-body text-xs text-text-secondary">
             {sub}
           </span>
         )}

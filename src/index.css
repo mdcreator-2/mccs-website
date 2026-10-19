@@ -8,44 +8,79 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Source Serif 4', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FAFAF8;
+  background-color: #F5F0E8;
   color: #1A1A2E;
+}
+
+/* ── Selection ───────────────────────────────────────────────────── */
+::selection {
+  background-color: #B8976A;
+  color: #FFFDF7;
 }
 
 /* ── Custom Scrollbar ────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAF8;
+  background: #F5F0E8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1B3A5C;
-  border-radius: 4px;
+  background: #1C2F41;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C5A55A;
+  background: #B8976A;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #1B3A5C #FAFAF8;
+  scrollbar-color: #1C2F41 #F5F0E8;
+}
+
+/* ── Paper texture overlay ───────────────────────────────────────── */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Linen texture for hero ──────────────────────────────────────── */
+.linen-texture {
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='4' height='4' fill='%230F1923'/%3E%3Cpath d='M0 0h1v1H0zm2 2h1v1H2z' fill='%23182838' opacity='0.4'/%3E%3C/svg%3E");
 }
 
 /* ── Utility Classes ─────────────────────────────────────────────── */
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #B8976A, transparent);
+  }
+
+  .gold-rule-left {
+    height: 1px;
+    background: linear-gradient(to right, #B8976A, transparent);
   }
 
   /* Country card flag overlay: always visible on phones and touch devices */

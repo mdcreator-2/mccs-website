@@ -15,7 +15,7 @@ function CountryCard({ country, index = 0 }) {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.07, ease: 'easeOut' }}
       whileHover={{ scale: 1.03 }}
-      className="group relative min-h-[180px] cursor-pointer overflow-hidden rounded-xl border border-border bg-surface transition-shadow duration-300 hover:shadow-lg"
+      className="group relative min-h-[180px] cursor-pointer overflow-hidden rounded-lg border border-border bg-surface transition-shadow duration-300 hover:shadow-lg"
     >
       {/* Flag slide-in overlay (visible on phones, hover slide-in on desktop) */}
       <div
@@ -36,7 +36,7 @@ function CountryCard({ country, index = 0 }) {
         {/* Top row: Badge */}
         <div className="flex items-start justify-between">
           <span
-            className={`inline-block rounded px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${
+            className={`inline-block rounded px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-wider ${
               badgeStyles[country.type] || badgeStyles.Invited
             }`}
           >
@@ -49,7 +49,7 @@ function CountryCard({ country, index = 0 }) {
           <h3 className="country-card-title font-serif text-xl font-bold text-text-primary transition-all duration-300 [text-shadow:0_1px_8px_rgba(255,255,255,0.7)] md:[text-shadow:none] md:group-hover:[text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
             {country.name}
           </h3>
-          <p className="mt-1 text-sm text-text-secondary">Dual Delegation</p>
+          <p className="mt-1 font-body text-sm text-text-secondary">Dual Delegation</p>
         </div>
       </div>
     </motion.div>

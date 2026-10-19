@@ -28,9 +28,14 @@ function PartyCard({ party, index = 0 }) {
       whileHover={{ scale: 1.03 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative min-h-[180px] cursor-pointer overflow-hidden rounded-xl border border-border bg-surface transition-shadow duration-300 hover:shadow-lg"
-      style={{ borderLeftWidth: '4px', borderLeftColor: party.color }}
+      className="group relative min-h-[180px] cursor-pointer overflow-hidden rounded-lg border border-border bg-surface transition-shadow duration-300 hover:shadow-lg"
     >
+      {/* Top accent line using party color */}
+      <div
+        className="absolute inset-x-0 top-0 h-[2px] z-[1]"
+        style={{ backgroundColor: party.color }}
+      />
+
       {/* Party color slide-in overlay */}
       <div
         className="absolute inset-y-0 left-0 z-0 transition-all duration-500 ease-out"
@@ -52,14 +57,14 @@ function PartyCard({ party, index = 0 }) {
         {/* Top row: Type badge */}
         <div className="flex items-start justify-between">
           <span
-            className={`inline-block rounded px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${
+            className={`inline-block rounded px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-wider ${
               typeBadgeStyles[party.type] || typeBadgeStyles.regional
             }`}
           >
             {typeLabels[party.type] || party.type}
           </span>
           <span
-            className="rounded-full px-2.5 py-1 text-xs font-bold"
+            className="rounded-full px-2.5 py-1 text-xs font-sans font-bold"
             style={{ color: party.color }}
           >
             {party.abbreviation}
@@ -78,7 +83,7 @@ function PartyCard({ party, index = 0 }) {
           >
             {party.name}
           </h3>
-          <p className="mt-1 text-sm text-text-secondary">
+          <p className="mt-1 font-body text-sm text-text-secondary">
             Leader: {party.leader}
           </p>
         </div>

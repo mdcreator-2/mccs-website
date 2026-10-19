@@ -29,7 +29,7 @@ function App() {
           <Route
             path="/about"
             element={
-              <div className="flex min-h-[60vh] items-center justify-center">
+              <div className="flex min-h-[60vh] items-center justify-center bg-background">
                 <h1 className="font-serif text-4xl text-primary">About — Coming Soon</h1>
               </div>
             }
@@ -37,7 +37,7 @@ function App() {
           <Route
             path="/rulebook"
             element={
-              <div className="flex min-h-[60vh] items-center justify-center">
+              <div className="flex min-h-[60vh] items-center justify-center bg-background">
                 <h1 className="font-serif text-4xl text-primary">Rulebook — Coming Soon</h1>
               </div>
             }
@@ -45,7 +45,7 @@ function App() {
           <Route
             path="/team"
             element={
-              <div className="flex min-h-[60vh] items-center justify-center">
+              <div className="flex min-h-[60vh] items-center justify-center bg-background">
                 <h1 className="font-serif text-4xl text-primary">Team — Coming Soon</h1>
               </div>
             }
