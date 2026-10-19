@@ -168,7 +168,7 @@ export default function HomePage() {
             {/* <GlowButton to="/committees" variant="gold">
               Explore Committees
             </GlowButton> */}
-            <GlowButton href={siteConfig.registrationUrl} variant="outline">
+            <GlowButton href={siteConfig.registrationUrl} variant="gold">
               Register Now
             </GlowButton>
           </motion.div>

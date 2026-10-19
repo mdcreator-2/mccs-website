@@ -111,14 +111,14 @@ function Navbar() {
 
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <a
+          {/* <a
             href={siteConfig.registrationUrl}
             target={siteConfig.registrationUrl.startsWith('http') ? '_blank' : undefined}
             rel={siteConfig.registrationUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
             className="hidden rounded border border-accent-gold px-5 py-2 text-sm font-sans font-semibold text-accent-gold transition-all hover:bg-accent-gold hover:text-primary-dark md:inline-block"
           >
             Register Now
-          </a>
+          </a> */}
           <button
             className="md:hidden text-white"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -180,7 +180,7 @@ function Navbar() {
                   </li>
                 )
               )}
-              <li className="mt-2">
+              {/* <li className="mt-2">
                 <a
                   href={siteConfig.registrationUrl}
                   target={siteConfig.registrationUrl.startsWith('http') ? '_blank' : undefined}
@@ -190,7 +190,7 @@ function Navbar() {
                 >
                   Register Now
                 </a>
-              </li>
+              </li> */}
             </ul>
           </motion.div>
         )}

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Users, MapPin, Shield, Landmark, ArrowRight, Award } from 'lucide-react';
+import { Calendar, Users, MapPin, Shield, Landmark, ArrowRight, Award, FileText } from 'lucide-react';
 
 import { siteConfig } from '../data/siteConfig';
 import { unscCountries } from '../data/countries';
@@ -49,7 +49,7 @@ function CommitteePage({ committee }) {
     [],
   );
 
-  const ChamberIcon = isUNSC ? Shield : Landmark;
+  const CommitteeIcon = isUNSC ? Shield : Landmark;
 
   return (
     <div className="min-h-screen bg-ink text-white relative overflow-hidden">
@@ -76,14 +76,14 @@ function CommitteePage({ committee }) {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-16 items-start">
-          {/* Left — Chamber Title & Mandate (3 cols) */}
+          {/* Left — Committee Title & Agenda (3 cols) */}
           <ScrollReveal direction="left" className="lg:col-span-3">
             <div className="flex items-center gap-2 mb-3">
               <span className="flex h-7 w-7 items-center justify-center rounded border border-accent-gold/30 bg-accent-gold/10 text-accent-gold">
-                <ChamberIcon size={15} />
+                <CommitteeIcon size={15} />
               </span>
               <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-accent-gold">
-                {isUNSC ? 'Chamber I · United Nations Security Council' : 'Chamber II · All India Political Parties Meet'}
+                {isUNSC ? 'Committee I · United Nations Security Council' : 'Committee II · All India Political Parties Meet'}
               </span>
             </div>
 
@@ -100,9 +100,20 @@ function CommitteePage({ committee }) {
             <p className="mt-6 max-w-2xl font-body text-base md:text-lg leading-relaxed text-white/80">
               {COMMITTEE_DESCRIPTIONS[committee]}
             </p>
+
+            {/* Official Committee Agenda Box */}
+            <div className="mt-8 rounded-xl border border-accent-gold/25 bg-[#121E2A]/70 p-5 backdrop-blur-sm">
+              <div className="flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-widest text-accent-gold mb-2">
+                <FileText size={14} />
+                <span>Official Committee Agenda</span>
+              </div>
+              <p className="font-serif italic text-white/95 text-base md:text-lg leading-relaxed">
+                &ldquo;{config.agenda}&rdquo;
+              </p>
+            </div>
           </ScrollReveal>
 
-          {/* Right — Chamber Specifications Dossier (2 cols) */}
+          {/* Right — Committee Specifications Dossier (2 cols) */}
           <ScrollReveal direction="right" delay={0.15} className="lg:col-span-2">
             <div className="relative rounded-xl border border-accent-gold/25 bg-[#121E2A]/90 p-6 md:p-7 backdrop-blur-sm shadow-xl">
               {/* Corner pips */}
@@ -111,7 +122,7 @@ function CommitteePage({ committee }) {
 
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
                 <h3 className="font-serif text-lg font-bold text-white tracking-wide">
-                  Chamber Dossier
+                  Committee Dossier
                 </h3>
                 <span className="rounded-full border border-accent-gold/30 bg-accent-gold/10 px-2.5 py-0.5 font-sans text-[11px] font-semibold uppercase tracking-wider text-accent-gold">
                   {config.totalDelegations} Seats
@@ -135,7 +146,6 @@ function CommitteePage({ committee }) {
                   icon={<MapPin size={17} />}
                   label="Venue & Quorum"
                   value={siteConfig.venue}
-                  sub={`Designated: ${siteConfig.venueSpecific}`}
                 />
                 <DetailRow
                   icon={<Award size={17} />}

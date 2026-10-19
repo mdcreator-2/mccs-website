@@ -7,8 +7,7 @@ import { siteConfig } from '../../data/siteConfig';
 const COMMITTEES = [
   {
     key: 'unsc',
-    chamber: 'Chamber I',
-    mandate: 'International Peace & Security',
+    committeeNum: 'Committee I',
     name: siteConfig.committees.unsc.name,
     abbr: siteConfig.committees.unsc.abbreviation,
     icon: Shield,
@@ -17,13 +16,11 @@ const COMMITTEES = [
     date: siteConfig.committees.unsc.date,
     totalDelegations: siteConfig.committees.unsc.totalDelegations,
     agenda: siteConfig.committees.unsc.agenda,
-    powers: 'P5 Veto & Chapter VII Resolutions',
     link: '/committees/unsc',
   },
   {
     key: 'aippm',
-    chamber: 'Chamber II',
-    mandate: 'Parliamentary Democracy & Policy',
+    committeeNum: 'Committee II',
     name: siteConfig.committees.aippm.name,
     abbr: siteConfig.committees.aippm.abbreviation,
     icon: Landmark,
@@ -32,7 +29,6 @@ const COMMITTEES = [
     date: siteConfig.committees.aippm.date,
     totalDelegations: siteConfig.committees.aippm.totalDelegations,
     agenda: siteConfig.committees.aippm.agenda,
-    powers: 'Treasury, Alliance & Opposition Benches',
     link: '/committees/aippm',
   },
 ];
@@ -81,7 +77,7 @@ export default function CommitteeOverviewSection() {
           </div>
         </ScrollReveal>
 
-        {/* Dual Chamber Consoles */}
+        {/* Dual Committee Consoles */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {COMMITTEES.map((committee, idx) => {
             const Icon = committee.icon;
@@ -108,7 +104,7 @@ export default function CommitteeOverviewSection() {
                   <span className="pointer-events-none absolute top-3 left-3 h-1.5 w-1.5 rounded-full bg-accent-gold/30 group-hover:bg-accent-gold/70 transition-colors" />
                   <span className="pointer-events-none absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-accent-gold/30 group-hover:bg-accent-gold/70 transition-colors" />
 
-                  {/* Chamber Header & Title */}
+                  {/* Committee Header & Title */}
                   <div>
                     <div className="flex items-center justify-between gap-3 mb-6">
                       <div className="flex items-center gap-3">
@@ -117,10 +113,10 @@ export default function CommitteeOverviewSection() {
                         </div>
                         <div>
                           <span className="block font-sans text-xs font-semibold uppercase tracking-widest text-accent-gold">
-                            {committee.chamber}
+                            {committee.committeeNum}
                           </span>
                           <span className="block font-sans text-[11px] text-white/50">
-                            {committee.mandate}
+                            {committee.delegation}
                           </span>
                         </div>
                       </div>
@@ -140,10 +136,10 @@ export default function CommitteeOverviewSection() {
                     <div className="my-6 rounded-lg border border-accent-gold/20 bg-ink/60 p-4">
                       <div className="flex items-center gap-2 font-sans text-[11px] font-semibold uppercase tracking-wider text-accent-gold/80 mb-1.5">
                         <FileText size={13} />
-                        <span>Agenda</span>
+                        <span>Official Agenda</span>
                       </div>
                       <p className="font-serif italic text-white/90 text-sm md:text-base leading-snug">
-                        &ldquo;{committee.agenda}&rdquo;
+                        &ldquo;{siteConfig.committees[committee.key]?.agenda}&rdquo;
                       </p>
                     </div>
 
@@ -175,16 +171,16 @@ export default function CommitteeOverviewSection() {
                     </div>
                   </div>
 
-                  {/* Chamber Action Link */}
+                  {/* Committee Action Link */}
                   <div className="mt-8 pt-5 border-t border-white/10 flex items-center justify-between">
                     <span className="font-sans text-xs text-white/50">
-                      {committee.powers}
+                      {committee.date}
                     </span>
                     <Link
                       to={committee.link}
                       className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-accent-gold hover:text-white transition-colors group-hover:gap-3 duration-200"
                     >
-                      <span>Explore Chamber</span>
+                      <span>Explore Committee</span>
                       <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                     </Link>
                   </div>

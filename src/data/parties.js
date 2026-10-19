@@ -8,7 +8,7 @@ export const aippmParties = [
   {
     name: 'Bharatiya Janata Party',
     abbreviation: 'BJP',
-    leader: 'J. P. Nadda',
+    leader: 'Narendra Modi',
     color: '#FF6B00',
     type: 'ruling',
     alliance: 'NDA',
@@ -76,7 +76,7 @@ export const aippmParties = [
   {
     name: 'Indian National Congress',
     abbreviation: 'INC',
-    leader: 'Mallikarjun Kharge',
+    leader: 'Rahul Gandhi',
     color: '#00A3E0',
     type: 'opposition',
     alliance: 'INDIA bloc',
@@ -116,7 +116,7 @@ export const aippmParties = [
   {
     name: 'Rashtriya Janata Dal',
     abbreviation: 'RJD',
-    leader: 'Lalu Prasad Yadav',
+    leader: 'Tejaswi Yadav',
     color: '#008000',
     type: 'opposition',
     alliance: 'INDIA bloc',
@@ -156,7 +156,7 @@ export const aippmParties = [
   {
     name: 'Jammu & Kashmir National Conference',
     abbreviation: 'JKNC',
-    leader: 'Farooq Abdullah',
+    leader: 'Umar Abdullah',
     color: '#C62828',
     type: 'opposition',
     alliance: 'INDIA bloc',

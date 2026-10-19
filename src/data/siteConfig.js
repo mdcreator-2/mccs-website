@@ -30,7 +30,7 @@ export const siteConfig = {
     aippm: {
       name: 'All India Political Parties Meet',
       abbreviation: 'AIPPM',
-      agenda: 'Delimitation of Parliamentary and Assembly constituencies after the upcoming Census.',
+      agenda: 'Delimitation of Parliamentary and Assembly constituencies after the upcoming Census',
       date: '1 November 2026',
       delegationType: 'Single Delegation',
       totalDelegations: 26,

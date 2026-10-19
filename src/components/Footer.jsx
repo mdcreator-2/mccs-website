@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Instagram, Linkedin, ArrowUp, Shield, Landmark, BookOpen } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig';
 
-const CHAMBER_LINKS = [
-  { label: 'UNSC Chamber (31 Oct)', to: '/committees/unsc', icon: Shield },
-  { label: 'AIPPM Chamber (1 Nov)', to: '/committees/aippm', icon: Landmark },
+const COMMITTEE_LINKS = [
+  { label: 'UNSC Committee (31 Oct)', to: '/committees/unsc', icon: Shield },
+  { label: 'AIPPM Committee (1 Nov)', to: '/committees/aippm', icon: Landmark },
   { label: 'Official Rulebook', to: '/rulebook', icon: BookOpen },
 ];
 
@@ -73,7 +73,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 font-body text-sm leading-relaxed text-white/70">
-              Model Conferences and Committee Simulation. A premier dual-chamber diplomatic summit organized by{' '}
+              Model Conferences and Committee Simulation. A premier dual-committee diplomatic summit organized by{' '}
               <span className="font-medium text-white/95">Expresso Club</span> at National Institute of Technology Patna.
             </p>
 
@@ -90,13 +90,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Chamber Portals */}
+          {/* Committee Portals */}
           <div>
             <h3 className="font-serif text-sm font-semibold tracking-wider text-accent-gold uppercase mb-4">
-              Chambers &amp; Rules
+              Committees &amp; Rules
             </h3>
             <ul className="space-y-3 font-body text-sm">
-              {CHAMBER_LINKS.map((link) => {
+              {COMMITTEE_LINKS.map((link) => {
                 const Icon = link.icon;
                 return (
                   <li key={link.to}>

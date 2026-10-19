@@ -5,8 +5,8 @@ import ScrollReveal from '../ui/ScrollReveal';
 const HIGHLIGHT_ITEMS = [
   {
     value: '02',
-    label: 'Chambers',
-    badge: 'Bicameral Simulation',
+    label: 'Committees',
+    badge: 'Dual Simulation',
     description: 'UN Security Council & All India Political Parties Meet',
     icon: Landmark,
   },

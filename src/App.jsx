@@ -4,6 +4,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CommitteePage from './pages/CommitteePage';
+import AboutPage from './pages/AboutPage';
+import RulebookPage from './pages/RulebookPage';
+import TeamPage from './pages/TeamPage';
 import GalleryPage from './pages/GalleryPage';
 
 function ScrollToTop() {
@@ -26,30 +29,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/committees/unsc" element={<CommitteePage committee="unsc" />} />
           <Route path="/committees/aippm" element={<CommitteePage committee="aippm" />} />
-          <Route
-            path="/about"
-            element={
-              <div className="flex min-h-[60vh] items-center justify-center bg-background">
-                <h1 className="font-serif text-4xl text-primary">About — Coming Soon</h1>
-              </div>
-            }
-          />
-          <Route
-            path="/rulebook"
-            element={
-              <div className="flex min-h-[60vh] items-center justify-center bg-background">
-                <h1 className="font-serif text-4xl text-primary">Rulebook — Coming Soon</h1>
-              </div>
-            }
-          />
-          <Route
-            path="/team"
-            element={
-              <div className="flex min-h-[60vh] items-center justify-center bg-background">
-                <h1 className="font-serif text-4xl text-primary">Team — Coming Soon</h1>
-              </div>
-            }
-          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/rulebook" element={<RulebookPage />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
       </main>
