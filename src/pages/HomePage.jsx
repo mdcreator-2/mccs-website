@@ -196,24 +196,31 @@ export default function HomePage() {
             className="mb-6 h-px w-24 origin-center bg-accent-gold/60"
           />
 
-          {/* MCCS Title — large and commanding */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="font-serif text-8xl md:text-9xl lg:text-[11rem] font-bold text-white tracking-[0.12em] leading-none"
+          {/* Golden MUN Logo — large and commanding hero emblem */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.88, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="relative my-2 flex items-center justify-center"
           >
-            MCCS
-          </motion.h1>
+            {/* Ambient gold glow behind the emblem */}
+            <div className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent-gold/20 blur-3xl md:h-80 md:w-80" />
+            <h1 className="sr-only">MCCS 2026 — NIT Patna MUN</h1>
+            <img
+              src="/Logo-mun-gold.webp"
+              alt="NIT Patna MUN Golden Emblem"
+              className="relative z-10 h-64 w-64 sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96 object-contain drop-shadow-[0_0_35px_rgba(184,151,106,0.35)] transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </motion.div>
 
           {/* Typewriter text */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="mt-5 h-8"
+            className="mt-6 h-8"
           >
-            <span className="font-body text-base md:text-lg text-white/60 tracking-wide">
+            <span className="font-body text-base md:text-lg text-white/70 tracking-wide">
               {displayText}
             </span>
             <span
@@ -223,16 +230,23 @@ export default function HomePage() {
             />
           </motion.div>
 
-          {/* Organized by */}
-          <motion.p
+          {/* Organized by with Expresso Club Logo */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-3 font-body text-sm text-white/40 tracking-wide"
+            className="mt-4 flex items-center justify-center gap-2.5 font-body text-sm text-white/50 tracking-wide"
           >
-            Organized by <span className="font-semibold text-white/60">Expresso Club</span>,
-            NIT Patna
-          </motion.p>
+            <span>Organized by</span>
+            <img
+              src="/expresso-logo.webp"
+              alt="Expresso Club Logo"
+              className="h-6 w-auto inline-block object-contain opacity-90 transition-opacity hover:opacity-100"
+            />
+            <span className="font-semibold text-white/80">Expresso Club</span>
+            <span className="text-white/30">·</span>
+            <span>NIT Patna</span>
+          </motion.div>
 
           {/* Gold accent rule below text */}
           <motion.div

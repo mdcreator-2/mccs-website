@@ -27,13 +27,12 @@ function Navbar() {
     <header className="sticky top-0 z-50 bg-primary-dark/95 backdrop-blur-md border-b border-accent-gold/20">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl font-bold text-white tracking-[0.08em]">MCCS</span>
-            <span className="hidden text-[10px] font-medium uppercase tracking-[0.25em] text-accent-gold sm:inline">
-              Conference
-            </span>
-          </div>
+        <Link to="/" className="flex items-center gap-3 group" aria-label="NIT Patna MUN MCCS Home">
+          <img
+            src="/Logo-mun-white.webp"
+            alt="NIT Patna MUN Logo"
+            className="h-11 w-11 sm:h-12 sm:w-12 object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Links */}

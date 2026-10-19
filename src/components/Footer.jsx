@@ -31,15 +31,29 @@ function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-1">
-            <h2 className="font-serif text-3xl font-bold tracking-[0.06em]">MCCS</h2>
-            <p className="mt-1 text-xs font-sans uppercase tracking-[0.25em] text-accent-gold">
-              NIT Patna
-            </p>
-            <p className="mt-4 font-body text-sm leading-relaxed text-white/60">
+            <Link to="/" className="inline-block group" aria-label="NIT Patna MUN MCCS Home">
+              <img
+                src="/Logo-mun-white.webp"
+                alt="NIT Patna MUN Logo"
+                className="h-16 w-16 sm:h-20 sm:w-20 object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
+            <p className="mt-3 font-body text-sm leading-relaxed text-white/60">
               Model Conferences and Committee Simulation. Organized by{' '}
               <span className="font-medium text-white/90">Expresso Club</span>,
               National Institute of Technology Patna.
             </p>
+            <div className="mt-4 flex items-center gap-3 pt-3 border-t border-white/10">
+              <img
+                src="/expresso-logo.webp"
+                alt="Expresso Club Logo"
+                className="h-8 w-auto object-contain opacity-80 transition-opacity hover:opacity-100"
+              />
+              <div className="font-body text-xs text-white/50 leading-snug">
+                <span className="block font-medium text-white/80">Expresso Club</span>
+                The Literary &amp; Art Club, NIT Patna
+              </div>
+            </div>
           </div>
 
           {/* Link Columns */}
