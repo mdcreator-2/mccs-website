@@ -111,12 +111,20 @@ export default function TeamPage() {
                   {/* Top Header: Avatar Crest & Tier Badge */}
                   <div className="flex items-start justify-between gap-4 mb-5">
                     {/* Diplomatic Monogram Avatar */}
-                    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/30 bg-gradient-to-br from-ink to-[#182838] shadow-inner group-hover:border-accent-gold/60 transition-colors">
-                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-accent-gold/5 blur-sm" />
-                      <span className="font-serif text-lg font-bold tracking-wider text-accent-gold">
-                        {member.initials}
-                      </span>
-                    </div>
+                    {member.photo ? (
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="h-16 w-16 shrink-0 rounded-2xl object-cover border border-accent-gold/30 shadow-inner group-hover:border-accent-gold/60 transition-colors"
+                      />
+                    ) : (
+                      <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/30 bg-gradient-to-br from-ink to-[#182838] shadow-inner group-hover:border-accent-gold/60 transition-colors">
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-accent-gold/5 blur-sm" />
+                        <span className="font-serif text-lg font-bold tracking-wider text-accent-gold">
+                          {member.initials}
+                        </span>
+                      </div>
+                    )}
 
                     <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-wider text-accent-gold/90">
                       {member.tier}

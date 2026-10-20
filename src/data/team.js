@@ -35,6 +35,16 @@ export const teamMembers = [
     bio: 'Directs conference infrastructure, financial compliance, and liaison with the National Institute of Technology Patna administration.',
     photo: null,
   },
+  {
+    id: 'head-planning-convenor',
+    name: 'To Be Announced',
+    initials: 'PC',
+    role: 'Head of Planning and Convenor',
+    tier: 'High Secretariat',
+    committee: 'Secretariat Executive',
+    bio: 'Directs master strategic scheduling, institutional administrative coordination, session workflows, and the convening roadmap for MCCS 2026.',
+    photo: null,
+  },
 
   // UNSC Executive Board
   {
@@ -109,6 +119,36 @@ export const teamMembers = [
     tier: 'Organizing Secretariat',
     committee: 'Expresso Club Directorate',
     bio: 'Leads conference media reporting, press releases, live photographic documentation, and external delegate communications.',
+    photo: null,
+  },
+  {
+    id: 'head-tech',
+    name: 'Mohmmad Ameer',
+    initials: 'MA',
+    role: 'Head of Tech',
+    tier: 'Organizing Secretariat',
+    committee: 'Expresso Club Directorate',
+    bio: 'Oversees digital architecture, web systems, technical infrastructure, and automated delegate registry platforms for MCCS 2026.',
+    photo: null,
+  },
+  {
+    id: 'head-design',
+    name: 'To Be Announced',
+    initials: 'HD',
+    role: 'Head of Design',
+    tier: 'Organizing Secretariat',
+    committee: 'Expresso Club Directorate',
+    bio: 'Directs visual branding, design systems, creative delegate collaterals, and aesthetic identity across all conference publications.',
+    photo: null,
+  },
+  {
+    id: 'head-sponsorship-outreach',
+    name: 'To Be Announced',
+    initials: 'SO',
+    role: 'Head of Sponsorship and Outreach',
+    tier: 'Organizing Secretariat',
+    committee: 'Expresso Club Directorate',
+    bio: 'Spearheads corporate sponsorships, institutional brand alliances, youth network partnerships, and external conference outreach.',
     photo: null,
   },
 ];
