@@ -154,7 +154,7 @@ export default function GalleryPage() {
         <div className="mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-accent-gold/15 pb-6">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs tracking-wider text-accent-gold/90 bg-accent-gold/10 px-3 py-1.5 rounded-lg border border-accent-gold/20">
-              50 Archival Plates · 35mm DSLR Collection
+              50 Archival Plates
             </span>
           </div>
 
@@ -163,11 +163,10 @@ export default function GalleryPage() {
             <button
               onClick={() => setViewMode('gallery')}
               title="Exhibition Gallery Wall"
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${
-                viewMode === 'gallery'
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${viewMode === 'gallery'
                   ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
                   : 'text-white/60 hover:text-white'
-              }`}
+                }`}
             >
               <Grid3X3 size={14} />
               <span>Exhibition Wall</span>
@@ -176,11 +175,10 @@ export default function GalleryPage() {
             <button
               onClick={() => setViewMode('theater')}
               title="Cinema Theater View"
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${
-                viewMode === 'theater'
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${viewMode === 'theater'
                   ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
                   : 'text-white/60 hover:text-white'
-              }`}
+                }`}
             >
               <Film size={14} />
               <span>Cinema Theater</span>
@@ -273,11 +271,10 @@ export default function GalleryPage() {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-sans font-semibold border transition-all ${
-                        isPlaying
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-sans font-semibold border transition-all ${isPlaying
                           ? 'border-accent-gold bg-accent-gold text-ink'
                           : 'border-white/20 bg-white/5 text-white/80 hover:border-accent-gold/40'
-                      }`}
+                        }`}
                     >
                       {isPlaying ? <Pause size={12} /> : <Play size={12} />}
                       <span>{isPlaying ? 'Pause Slideshow' : 'Play Slideshow'}</span>
@@ -303,11 +300,10 @@ export default function GalleryPage() {
                       <button
                         key={photo.id}
                         onClick={() => setTheaterIndex(idx)}
-                        className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-md transition-all duration-200 border ${
-                          isCurrent
+                        className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-md transition-all duration-200 border ${isCurrent
                             ? 'border-accent-gold ring-2 ring-accent-gold/40 scale-105 z-10'
                             : 'border-white/10 opacity-50 hover:opacity-100 hover:border-white/40'
-                        }`}
+                          }`}
                       >
                         <img
                           src={photo.thumb}
@@ -507,11 +503,10 @@ export default function GalleryPage() {
                     <button
                       key={photo.id}
                       onClick={() => setLightboxIndex(idx)}
-                      className={`relative h-14 w-20 shrink-0 overflow-hidden rounded transition-all duration-200 border ${
-                        isActive
+                      className={`relative h-14 w-20 shrink-0 overflow-hidden rounded transition-all duration-200 border ${isActive
                           ? 'border-accent-gold ring-2 ring-accent-gold/50 scale-105 z-10'
                           : 'border-white/10 opacity-40 hover:opacity-100 hover:border-white/40'
-                      }`}
+                        }`}
                     >
                       <img
                         src={photo.thumb}
