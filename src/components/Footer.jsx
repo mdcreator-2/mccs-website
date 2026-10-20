@@ -10,8 +10,8 @@ const COMMITTEE_LINKS = [
 
 const QUICK_LINKS = [
   { label: 'Conference Home', to: '/' },
-  { label: 'About MCCS', to: '/about' },
-  { label: 'Executive Secretariat', to: '/team' },
+  { label: 'About', to: '/about' },
+  { label: 'Secretariat', to: '/secretariat' },
   { label: 'Diplomatic Gallery', to: '/gallery' },
 ];
 

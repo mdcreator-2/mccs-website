@@ -110,7 +110,7 @@ export default function HomePage() {
             <div className="pointer-events-none absolute h-52 w-52 sm:h-60 sm:w-60 md:h-72 md:w-72 rounded-full bg-accent-gold/25 blur-3xl" />
             <h1 className="sr-only">MCCS 2026 — NIT Patna MUN</h1>
             <img
-              src="/images/logos/Logo-mun-gold.png"
+              src="/images/logos/Logo-mun-gold-hero.png"
               alt="NIT Patna MUN Golden Emblem"
               className="relative z-10 h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 object-contain drop-shadow-[0_0_35px_rgba(184,151,106,0.45)] transition-transform duration-500 hover:scale-[1.02]"
             />

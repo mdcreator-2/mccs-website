@@ -46,7 +46,7 @@ export default function TeamPage() {
           <SectionHeading
             light
             title="The Executive Secretariat"
-            subtitle="The custodians of diplomatic decorum, procedural rigor, and operational excellence for MCCS 2026."
+            subtitle="The custodians of diplomatic decorum, procedural rigor, and operational excellence for NIT Patna MUN 2026."
           />
         </ScrollReveal>
 

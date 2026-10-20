@@ -31,6 +31,7 @@ function App() {
           <Route path="/committees/aippm" element={<CommitteePage committee="aippm" />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/rulebook" element={<RulebookPage />} />
+          <Route path="/secretariat" element={<TeamPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
