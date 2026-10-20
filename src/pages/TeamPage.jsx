@@ -7,6 +7,30 @@ import GlowButton from '../components/ui/GlowButton';
 import { siteConfig } from '../data/siteConfig';
 import { teamMembers, teamTiers } from '../data/team';
 
+function TeamMemberAvatar({ member }) {
+  const [imgError, setImgError] = useState(false);
+
+  if (member.photo && !imgError) {
+    return (
+      <img
+        src={member.photo}
+        alt={member.name}
+        onError={() => setImgError(true)}
+        className="h-16 w-16 shrink-0 rounded-2xl object-cover border border-accent-gold/30 shadow-inner group-hover:border-accent-gold/60 transition-colors"
+      />
+    );
+  }
+
+  return (
+    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/30 bg-gradient-to-br from-ink to-[#182838] shadow-inner group-hover:border-accent-gold/60 transition-colors">
+      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-accent-gold/5 blur-sm" />
+      <span className="font-serif text-lg font-bold tracking-wider text-accent-gold">
+        {member.initials}
+      </span>
+    </div>
+  );
+}
+
 export default function TeamPage() {
   const [activeTier, setActiveTier] = useState('All');
 
@@ -110,21 +134,8 @@ export default function TeamPage() {
                 <div>
                   {/* Top Header: Avatar Crest & Tier Badge */}
                   <div className="flex items-start justify-between gap-4 mb-5">
-                    {/* Diplomatic Monogram Avatar */}
-                    {member.photo ? (
-                      <img
-                        src={member.photo}
-                        alt={member.name}
-                        className="h-16 w-16 shrink-0 rounded-2xl object-cover border border-accent-gold/30 shadow-inner group-hover:border-accent-gold/60 transition-colors"
-                      />
-                    ) : (
-                      <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/30 bg-gradient-to-br from-ink to-[#182838] shadow-inner group-hover:border-accent-gold/60 transition-colors">
-                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-accent-gold/5 blur-sm" />
-                        <span className="font-serif text-lg font-bold tracking-wider text-accent-gold">
-                          {member.initials}
-                        </span>
-                      </div>
-                    )}
+                    {/* Diplomatic Monogram Avatar / Photo */}
+                    <TeamMemberAvatar member={member} />
 
                     <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-wider text-accent-gold/90">
                       {member.tier}
