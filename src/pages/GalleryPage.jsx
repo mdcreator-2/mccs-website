@@ -9,20 +9,17 @@ import {
   Play,
   Pause,
   Grid3X3,
-  LayoutGrid,
   Film,
   Download,
-  Calendar,
   Layers,
   ArrowRight,
 } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import SectionHeading from '../components/ui/SectionHeading';
-import { galleryPhotos, GALLERY_CHAPTERS } from '../data/gallery';
+import { galleryPhotos } from '../data/gallery';
 
 export default function GalleryPage() {
-  const [activeChapter, setActiveChapter] = useState('All');
-  const [viewMode, setViewMode] = useState('mosaic'); // 'mosaic' | 'contact' | 'theater'
+  const [viewMode, setViewMode] = useState('gallery'); // 'gallery' | 'theater'
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [theaterIndex, setTheaterIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,29 +29,19 @@ export default function GalleryPage() {
   const filmstripRef = useRef(null);
   const lightboxFilmstripRef = useRef(null);
 
-  // Filter photos by selected chapter
-  const filteredPhotos =
-    activeChapter === 'All'
-      ? galleryPhotos
-      : galleryPhotos.filter((p) => p.chapter === activeChapter);
-
-  // Reset pagination & theater index when chapter changes
-  useEffect(() => {
-    setVisibleCount(24);
-    setTheaterIndex(0);
-  }, [activeChapter]);
+  const allPhotos = galleryPhotos;
 
   // Slideshow timer for Theater mode
   useEffect(() => {
     if (isPlaying && viewMode === 'theater') {
       theaterTimerRef.current = setInterval(() => {
-        setTheaterIndex((prev) => (prev + 1) % filteredPhotos.length);
+        setTheaterIndex((prev) => (prev + 1) % allPhotos.length);
       }, 4000);
     } else {
       clearInterval(theaterTimerRef.current);
     }
     return () => clearInterval(theaterTimerRef.current);
-  }, [isPlaying, viewMode, filteredPhotos.length]);
+  }, [isPlaying, viewMode, allPhotos.length]);
 
   // Keyboard navigation for Lightbox and Theater
   const handleKeyDown = useCallback(
@@ -62,25 +49,25 @@ export default function GalleryPage() {
       if (lightboxIndex !== null) {
         if (e.key === 'Escape') setLightboxIndex(null);
         if (e.key === 'ArrowRight') {
-          setLightboxIndex((prev) => (prev + 1) % filteredPhotos.length);
+          setLightboxIndex((prev) => (prev + 1) % allPhotos.length);
         }
         if (e.key === 'ArrowLeft') {
           setLightboxIndex((prev) =>
-            prev === 0 ? filteredPhotos.length - 1 : prev - 1
+            prev === 0 ? allPhotos.length - 1 : prev - 1
           );
         }
       } else if (viewMode === 'theater') {
         if (e.key === 'ArrowRight') {
-          setTheaterIndex((prev) => (prev + 1) % filteredPhotos.length);
+          setTheaterIndex((prev) => (prev + 1) % allPhotos.length);
         }
         if (e.key === 'ArrowLeft') {
           setTheaterIndex((prev) =>
-            prev === 0 ? filteredPhotos.length - 1 : prev - 1
+            prev === 0 ? allPhotos.length - 1 : prev - 1
           );
         }
       }
     },
-    [lightboxIndex, viewMode, filteredPhotos.length]
+    [lightboxIndex, viewMode, allPhotos.length]
   );
 
   useEffect(() => {
@@ -116,9 +103,9 @@ export default function GalleryPage() {
     }
   }, [lightboxIndex]);
 
-  const currentTheaterPhoto = filteredPhotos[theaterIndex] || filteredPhotos[0];
+  const currentTheaterPhoto = allPhotos[theaterIndex] || allPhotos[0];
   const currentLightboxPhoto =
-    lightboxIndex !== null ? filteredPhotos[lightboxIndex] : null;
+    lightboxIndex !== null ? allPhotos[lightboxIndex] : null;
 
   return (
     <div className="min-h-screen bg-ink text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -164,86 +151,45 @@ export default function GalleryPage() {
           </div>
         </ScrollReveal>
 
-        {/* ───── Controls Bar: Chapter Tabs & View Mode Switcher ───── */}
-        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-5 border-b border-accent-gold/15 pb-6">
-          {/* Chapter Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            {GALLERY_CHAPTERS.map((cat) => {
-              const count =
-                cat === 'All'
-                  ? galleryPhotos.length
-                  : galleryPhotos.filter((p) => p.chapter === cat).length;
-              const isActive = activeChapter === cat;
-
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveChapter(cat)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-sans uppercase tracking-wider transition-all duration-200 border flex items-center gap-1.5 ${
-                    isActive
-                      ? 'bg-accent-gold text-ink font-bold border-accent-gold shadow-[0_2px_12px_rgba(184,151,106,0.35)]'
-                      : 'bg-[#121E2A]/80 text-white/70 border-accent-gold/20 hover:border-accent-gold/50 hover:text-white'
-                  }`}
-                >
-                  <span>{cat}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isActive
-                        ? 'bg-ink/20 text-ink font-semibold'
-                        : 'bg-white/10 text-white/60'
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+        {/* ───── Controls Bar: View Mode Switcher & Counter ───── */}
+        <div className="mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-accent-gold/15 pb-6">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs tracking-wider text-accent-gold/90 bg-accent-gold/10 px-3 py-1.5 rounded-lg border border-accent-gold/20">
+              50 Archival Plates · 35mm DSLR Collection
+            </span>
           </div>
 
           {/* View Mode Segmented Controls */}
           <div className="flex items-center gap-2 bg-[#0F1923] p-1.5 rounded-xl border border-accent-gold/20 shadow-inner">
             <button
-              onClick={() => setViewMode('mosaic')}
-              title="Exhibition Mosaic View"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans transition-all ${
-                viewMode === 'mosaic'
-                  ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              <LayoutGrid size={14} />
-              <span className="hidden sm:inline">Mosaic</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('contact')}
-              title="Contact Sheet View"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans transition-all ${
-                viewMode === 'contact'
+              onClick={() => setViewMode('gallery')}
+              title="Exhibition Gallery Wall"
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${
+                viewMode === 'gallery'
                   ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
                   : 'text-white/60 hover:text-white'
               }`}
             >
               <Grid3X3 size={14} />
-              <span className="hidden sm:inline">Contact Sheet</span>
+              <span>Exhibition Wall</span>
             </button>
 
             <button
               onClick={() => setViewMode('theater')}
               title="Cinema Theater View"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${
                 viewMode === 'theater'
                   ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
                   : 'text-white/60 hover:text-white'
               }`}
             >
               <Film size={14} />
-              <span className="hidden sm:inline">Theater</span>
+              <span>Cinema Theater</span>
             </button>
           </div>
         </div>
 
-        {/* ───── VIEW 1: THEATER SPOTLIGHT MODE ───── */}
+        {/* ───── VIEW 1: CINEMA THEATER MODE ───── */}
         {viewMode === 'theater' && currentTheaterPhoto && (
           <div className="mb-16">
             <div className="relative overflow-hidden rounded-2xl border border-accent-gold/30 bg-[#0B1520] shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
@@ -267,13 +213,10 @@ export default function GalleryPage() {
                 {/* Dark Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070F18] via-transparent to-transparent opacity-80" />
 
-                {/* Top Corner Diplomatic Tag */}
+                {/* Top Corner Archival Tag */}
                 <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                  <span className="rounded bg-black/60 px-3 py-1 text-xs font-sans font-medium text-white/90 border border-white/10 backdrop-blur-md">
-                    PLATE {currentTheaterPhoto.number} / {filteredPhotos.length}
-                  </span>
-                  <span className="rounded bg-accent-gold/90 px-3 py-1 text-xs font-sans font-bold text-ink backdrop-blur-md">
-                    {currentTheaterPhoto.chapter}
+                  <span className="rounded bg-black/60 px-3 py-1 text-xs font-mono font-medium text-accent-gold border border-accent-gold/30 backdrop-blur-md">
+                    PLATE {currentTheaterPhoto.number} / {allPhotos.length}
                   </span>
                 </div>
 
@@ -307,7 +250,7 @@ export default function GalleryPage() {
                   onClick={(e) => {
                     e.stopPropagation();
                     setTheaterIndex((prev) =>
-                      prev === 0 ? filteredPhotos.length - 1 : prev - 1
+                      prev === 0 ? allPhotos.length - 1 : prev - 1
                     );
                   }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white/90 hover:bg-accent-gold hover:text-ink hover:border-accent-gold transition-all backdrop-blur-md"
@@ -319,7 +262,7 @@ export default function GalleryPage() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setTheaterIndex((prev) => (prev + 1) % filteredPhotos.length);
+                    setTheaterIndex((prev) => (prev + 1) % allPhotos.length);
                   }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white/90 hover:bg-accent-gold hover:text-ink hover:border-accent-gold transition-all backdrop-blur-md"
                   aria-label="Next photograph"
@@ -343,13 +286,13 @@ export default function GalleryPage() {
                       {isPlaying ? <Pause size={12} /> : <Play size={12} />}
                       <span>{isPlaying ? 'Pause Slideshow' : 'Play Slideshow'}</span>
                     </button>
-                    <span className="font-sans text-xs text-white/50">
+                    <span className="font-sans text-xs text-white/50 hidden sm:inline">
                       Use Arrow Keys ← → to navigate
                     </span>
                   </div>
 
                   <span className="font-mono text-xs text-accent-gold">
-                    {theaterIndex + 1} / {filteredPhotos.length}
+                    {theaterIndex + 1} / {allPhotos.length}
                   </span>
                 </div>
 
@@ -358,7 +301,7 @@ export default function GalleryPage() {
                   ref={filmstripRef}
                   className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-accent-gold/20 scrollbar-track-transparent"
                 >
-                  {filteredPhotos.map((photo, idx) => {
+                  {allPhotos.map((photo, idx) => {
                     const isCurrent = idx === theaterIndex;
                     return (
                       <button
@@ -387,107 +330,63 @@ export default function GalleryPage() {
           </div>
         )}
 
-        {/* ───── VIEW 2: EXHIBITION MOSAIC (EDITORIAL SALON WALL) ───── */}
-        {viewMode === 'mosaic' && (
+        {/* ───── VIEW 2: SEAMLESS EXHIBITION GALLERY WALL (GAP-FREE) ───── */}
+        {viewMode === 'gallery' && (
           <div className="mb-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {filteredPhotos.slice(0, visibleCount).map((photo, idx) => {
-                // Feature rhythmic pacing: certain key indices span 2 columns
-                const isHero = idx % 9 === 0 || idx % 9 === 5;
-
-                return (
-                  <motion.div
-                    key={photo.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.35, delay: (idx % 8) * 0.03 }}
-                    onClick={() => setLightboxIndex(idx)}
-                    className={`group relative overflow-hidden rounded-xl border border-accent-gold/25 bg-[#0F1923] shadow-lg cursor-pointer transition-all duration-300 hover:border-accent-gold/70 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)] ${
-                      isHero
-                        ? 'sm:col-span-2 aspect-[16/10] sm:aspect-[21/11]'
-                        : 'aspect-[3/2]'
-                    }`}
-                  >
-                    {/* Delicate Corner Registration Marks */}
-                    <span className="pointer-events-none absolute top-2 left-2 z-20 h-1.5 w-1.5 border-l border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                    <span className="pointer-events-none absolute top-2 right-2 z-20 h-1.5 w-1.5 border-r border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                    <span className="pointer-events-none absolute bottom-2 left-2 z-20 h-1.5 w-1.5 border-l border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                    <span className="pointer-events-none absolute bottom-2 right-2 z-20 h-1.5 w-1.5 border-r border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-
-                    {/* Image */}
-                    <img
-                      src={photo.thumb}
-                      alt={photo.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    />
-
-                    {/* Subtle Permanent Accession Tag (bottom right) */}
-                    <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
-                      <span className="font-mono text-[10px] tracking-wider text-accent-gold/90 bg-ink/75 backdrop-blur-sm px-2 py-0.5 rounded border border-accent-gold/20 shadow">
-                        № {photo.number}
-                      </span>
-                    </div>
-
-                    {/* Hover Reveal: Diplomatic Vignette & Title Overlay */}
-                    <div className="absolute inset-0 z-10 flex flex-col justify-between p-5 bg-gradient-to-t from-[#070F18]/95 via-[#070F18]/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      {/* Top Chapter Tag */}
-                      <div className="flex items-center justify-between">
-                        <span className="rounded bg-accent-gold/90 px-2 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-ink shadow">
-                          {photo.chapter}
-                        </span>
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/80 text-accent-gold border border-accent-gold/40 shadow">
-                          <Maximize2 size={13} />
-                        </span>
-                      </div>
-
-                      {/* Bottom Title & Expand Cue */}
-                      <div>
-                        <h4 className="font-serif text-base font-bold text-white tracking-tight drop-shadow">
-                          {photo.title}
-                        </h4>
-                        <div className="mt-1 flex items-center justify-between text-[11px] font-sans text-accent-gold/80">
-                          <span>NIT Patna MUN 2025</span>
-                          <span className="inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                            View Plate <ArrowRight size={11} />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* ───── VIEW 3: CONTACT SHEET (DENSE ARCHIVAL GRID) ───── */}
-        {viewMode === 'contact' && (
-          <div className="mb-16">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 sm:gap-3">
-              {filteredPhotos.slice(0, visibleCount).map((photo, idx) => (
+            {/* Perfectly uniform 3:2 landscape grid with zero awkward row-height gaps */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+              {allPhotos.slice(0, visibleCount).map((photo, idx) => (
                 <motion.div
                   key={photo.id}
                   layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: (idx % 8) * 0.02 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group relative aspect-[3/2] overflow-hidden rounded-lg border border-accent-gold/20 bg-[#0B1520] cursor-pointer hover:border-accent-gold/70 hover:shadow-lg transition-all"
+                  className="group relative aspect-[3/2] overflow-hidden rounded-xl border border-accent-gold/25 bg-[#0F1923] shadow-md cursor-pointer transition-all duration-300 hover:border-accent-gold/70 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
                 >
+                  {/* Corner Registration Marks */}
+                  <span className="pointer-events-none absolute top-2 left-2 z-20 h-1.5 w-1.5 border-l border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
+                  <span className="pointer-events-none absolute top-2 right-2 z-20 h-1.5 w-1.5 border-r border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
+                  <span className="pointer-events-none absolute bottom-2 left-2 z-20 h-1.5 w-1.5 border-l border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
+                  <span className="pointer-events-none absolute bottom-2 right-2 z-20 h-1.5 w-1.5 border-r border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
+
+                  {/* Image */}
                   <img
                     src={photo.thumb}
                     alt={photo.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-between p-2.5">
-                    <span className="font-mono text-[9px] text-accent-gold">
-                      #{photo.number}
+
+                  {/* Subtle Permanent Accession Tag (bottom right) */}
+                  <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
+                    <span className="font-mono text-[10px] tracking-wider text-accent-gold/90 bg-ink/75 backdrop-blur-sm px-2 py-0.5 rounded border border-accent-gold/20 shadow">
+                      № {photo.number}
                     </span>
-                    <span className="font-serif text-xs font-bold text-white line-clamp-2">
-                      {photo.title}
-                    </span>
+                  </div>
+
+                  {/* Hover Reveal: Clean Vignette, Title & View Plate Icon (No tags or chips) */}
+                  <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-5 bg-gradient-to-t from-[#070F18]/95 via-[#070F18]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    {/* Top Right Expand Icon */}
+                    <div className="flex justify-end">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/80 text-accent-gold border border-accent-gold/40 shadow">
+                        <Maximize2 size={13} />
+                      </span>
+                    </div>
+
+                    {/* Bottom Title & Action Cue */}
+                    <div>
+                      <h4 className="font-serif text-sm sm:text-base font-bold text-white tracking-tight drop-shadow">
+                        {photo.title}
+                      </h4>
+                      <div className="mt-1 flex items-center justify-between text-[11px] font-sans text-accent-gold/80">
+                        <span>NIT Patna MUN 2025</span>
+                        <span className="inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform font-medium">
+                          Inspect <ArrowRight size={11} />
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -496,19 +395,19 @@ export default function GalleryPage() {
         )}
 
         {/* ───── Progressive Load More / Expand Full Archive ───── */}
-        {viewMode !== 'theater' && visibleCount < filteredPhotos.length && (
+        {viewMode !== 'theater' && visibleCount < allPhotos.length && (
           <div className="text-center mb-16">
             <button
-              onClick={() => setVisibleCount(filteredPhotos.length)}
+              onClick={() => setVisibleCount(allPhotos.length)}
               className="inline-flex items-center gap-2 rounded-full border border-accent-gold/40 bg-[#121E2A] px-7 py-3 text-xs font-sans font-bold uppercase tracking-wider text-accent-gold hover:border-accent-gold hover:bg-accent-gold hover:text-ink transition-all duration-300 shadow-lg"
             >
               <Layers size={14} />
               <span>
-                Reveal All {filteredPhotos.length} Archival Plates ({filteredPhotos.length - visibleCount} Remaining)
+                Reveal All {allPhotos.length} Archival Plates ({allPhotos.length - visibleCount} Remaining)
               </span>
             </button>
             <p className="mt-2 text-xs font-sans text-white/50">
-              Showing {visibleCount} of {filteredPhotos.length} archival plates
+              Showing {visibleCount} of {allPhotos.length} archival plates
             </p>
           </div>
         )}
@@ -525,20 +424,17 @@ export default function GalleryPage() {
             onClick={() => setLightboxIndex(null)}
             className="fixed inset-0 z-50 flex flex-col justify-between bg-[#070F18]/95 p-3 sm:p-6 backdrop-blur-xl"
           >
-            {/* Top Bar: Archival Index & Actions */}
+            {/* Top Bar: Archival Index & Actions (Clean, no irrelevant tags) */}
             <div
               className="flex items-center justify-between border-b border-accent-gold/20 pb-3"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs font-semibold text-accent-gold tracking-widest bg-accent-gold/10 px-2.5 py-1 rounded border border-accent-gold/20">
-                  PLATE {currentLightboxPhoto.number} / {filteredPhotos.length}
+                  PLATE {currentLightboxPhoto.number} / {allPhotos.length}
                 </span>
-                <span className="hidden sm:inline-block font-sans text-xs text-white/70">
-                  {currentLightboxPhoto.chapter}
-                </span>
-                <span className="hidden md:inline-block font-sans text-xs text-white/40">
-                  • NIT Patna MUN 2025 Edition
+                <span className="hidden sm:inline-block font-sans text-xs text-white/50">
+                  NIT Patna MUN 2025 Edition
                 </span>
               </div>
 
@@ -574,7 +470,7 @@ export default function GalleryPage() {
               <button
                 onClick={() =>
                   setLightboxIndex((prev) =>
-                    prev === 0 ? filteredPhotos.length - 1 : prev - 1
+                    prev === 0 ? allPhotos.length - 1 : prev - 1
                   )
                 }
                 className="absolute left-2 sm:left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-ink/80 text-white/90 hover:bg-accent-gold hover:text-ink hover:border-accent-gold transition-all backdrop-blur-md shadow-xl"
@@ -596,7 +492,7 @@ export default function GalleryPage() {
               {/* Next Button */}
               <button
                 onClick={() =>
-                  setLightboxIndex((prev) => (prev + 1) % filteredPhotos.length)
+                  setLightboxIndex((prev) => (prev + 1) % allPhotos.length)
                 }
                 className="absolute right-2 sm:right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-ink/80 text-white/90 hover:bg-accent-gold hover:text-ink hover:border-accent-gold transition-all backdrop-blur-md shadow-xl"
                 aria-label="Next photograph"
@@ -624,7 +520,7 @@ export default function GalleryPage() {
                 ref={lightboxFilmstripRef}
                 className="flex gap-2 overflow-x-auto py-1 scrollbar-thin scrollbar-thumb-accent-gold/30 scrollbar-track-transparent"
               >
-                {filteredPhotos.map((photo, idx) => {
+                {allPhotos.map((photo, idx) => {
                   const isActive = idx === lightboxIndex;
                   return (
                     <button
