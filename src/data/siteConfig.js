@@ -11,7 +11,7 @@ export const siteConfig = {
     unsc: new Date('2026-10-31T08:30:00+05:30'),
     aippm: new Date('2026-11-01T08:30:00+05:30'),
   },
-  registrationUrl: '#', // placeholder
+  registrationUrl: 'https://linktr.ee/mccs_nitp', // placeholder
   contact: {
     email: 'taha.yaseen.cse@gmail.com', // placeholder
     instagram: 'https://www.instagram.com/expresso_nitp/',
