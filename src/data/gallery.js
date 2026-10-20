@@ -1,0 +1,73 @@
+/**
+ * MCCS Diplomatic Archives - 2025 MUN Edition Photography
+ * Curated high-resolution photographic collection from NIT Patna MUN 2025
+ */
+
+export const GALLERY_CHAPTERS = [
+  'All',
+  'Assembly & Dais',
+  'Floor Deliberations',
+  'Bilateral Caucus',
+  'Awards & Plenary',
+];
+
+export const galleryPhotos = [
+  { id: 1, file: 'DSC_0143.jpg', chapter: 'Assembly & Dais', title: 'Inaugural Dais Assembled' },
+  { id: 2, file: 'DSC_0145.jpg', chapter: 'Assembly & Dais', title: 'Arrival of Dignitaries' },
+  { id: 3, file: 'DSC_0146.jpg', chapter: 'Assembly & Dais', title: 'Opening Plenary Address' },
+  { id: 4, file: 'DSC_0147.jpg', chapter: 'Assembly & Dais', title: 'Council Dais in Session' },
+  { id: 5, file: 'DSC_0151.jpg', chapter: 'Assembly & Dais', title: 'Ceremonial Commemoration' },
+  { id: 6, file: 'DSC_0152.jpg', chapter: 'Assembly & Dais', title: 'Executive Board Assembly' },
+  { id: 7, file: 'DSC_0154.jpg', chapter: 'Assembly & Dais', title: 'Secretary General Address' },
+  { id: 8, file: 'DSC_0161.jpg', chapter: 'Assembly & Dais', title: 'Roll Call of Delegations' },
+  { id: 9, file: 'DSC_0164.jpg', chapter: 'Assembly & Dais', title: 'Dignitary Felicitation' },
+  { id: 10, file: 'DSC_0166.jpg', chapter: 'Assembly & Dais', title: 'Presiding Officers at the Dais' },
+  { id: 11, file: 'DSC_0168.jpg', chapter: 'Assembly & Dais', title: 'Delegate Seating Order' },
+  { id: 12, file: 'DSC_0173.jpg', chapter: 'Assembly & Dais', title: 'Adoption of the Agenda' },
+  { id: 13, file: 'DSC_0174.jpg', chapter: 'Assembly & Dais', title: 'General Speakers List Initialized' },
+  { id: 14, file: 'DSC_0187.jpg', chapter: 'Floor Deliberations', title: 'Opening Statement by Delegate' },
+  { id: 15, file: 'DSC_0192.jpg', chapter: 'Floor Deliberations', title: 'Point of Parliamentary Inquiry' },
+  { id: 16, file: 'DSC_0198.jpg', chapter: 'Floor Deliberations', title: 'Floor Interpellation' },
+  { id: 17, file: 'DSC_0210.jpg', chapter: 'Floor Deliberations', title: 'Challenging Policy Positions' },
+  { id: 18, file: 'DSC_0229.jpg', chapter: 'Floor Deliberations', title: 'Sovereign Statement on Foreign Policy' },
+  { id: 19, file: 'DSC_0240.jpg', chapter: 'Floor Deliberations', title: 'Dais Evaluating Procedural Motion' },
+  { id: 20, file: 'DSC_0242.jpg', chapter: 'Floor Deliberations', title: 'Cross-Floor Deliberations' },
+  { id: 21, file: 'DSC_0251.jpg', chapter: 'Floor Deliberations', title: 'Right of Reply Exercised' },
+  { id: 22, file: 'DSC_0254.jpg', chapter: 'Floor Deliberations', title: 'Parliamentary Debate in Full Flow' },
+  { id: 23, file: 'DSC_0271.jpg', chapter: 'Floor Deliberations', title: 'Caucus on Multilateral Security' },
+  { id: 24, file: 'DSC_0272.jpg', chapter: 'Floor Deliberations', title: 'Clause-by-Clause Scrutiny' },
+  { id: 25, file: 'DSC_0275.jpg', chapter: 'Floor Deliberations', title: 'Motion for Moderated Caucus' },
+  { id: 26, file: 'DSC_0280.jpg', chapter: 'Floor Deliberations', title: 'Delegate Rebuttal at the Podium' },
+  { id: 27, file: 'DSC_0291.jpg', chapter: 'Floor Deliberations', title: 'Delegation Yielding Time to Chair' },
+  { id: 28, file: 'DSC_0293.jpg', chapter: 'Floor Deliberations', title: 'Executive Scrutiny of Statements' },
+  { id: 29, file: 'DSC_0299.jpg', chapter: 'Floor Deliberations', title: 'Ministerial Interventions' },
+  { id: 30, file: 'DSC_0303.jpg', chapter: 'Floor Deliberations', title: 'Cross-Party Consensus Discussions' },
+  { id: 31, file: 'DSC_0308.jpg', chapter: 'Floor Deliberations', title: 'Keynote Rebuttal by Opposition' },
+  { id: 32, file: 'DSC_0310.jpg', chapter: 'Floor Deliberations', title: 'Floor Reaction to Draft Resolutions' },
+  { id: 33, file: 'DSC_0313.jpg', chapter: 'Floor Deliberations', title: 'Decorum Enforced by the Chair' },
+  { id: 34, file: 'DSC_0314.jpg', chapter: 'Floor Deliberations', title: 'Intense Bilateral Exchange' },
+  { id: 35, file: 'DSC_0317.jpg', chapter: 'Bilateral Caucus', title: 'Unmoderated Bloc Consultation' },
+  { id: 36, file: 'DSC_0318.jpg', chapter: 'Bilateral Caucus', title: 'Drafting Working Papers' },
+  { id: 37, file: 'DSC_0323.jpg', chapter: 'Bilateral Caucus', title: 'Signatory Coalition Formed' },
+  { id: 38, file: 'DSC_0325.jpg', chapter: 'Bilateral Caucus', title: 'Multi-Delegation Compromise' },
+  { id: 39, file: 'DSC_0327.jpg', chapter: 'Bilateral Caucus', title: 'Finalizing Communiqué Text' },
+  { id: 40, file: 'DSC_0333.jpg', chapter: 'Bilateral Caucus', title: 'Secretariat Review of Drafts' },
+  { id: 41, file: 'DSC_0343.jpg', chapter: 'Bilateral Caucus', title: 'Joint Amendments Proposed' },
+  { id: 42, file: 'DSC_0347.jpg', chapter: 'Bilateral Caucus', title: 'Floor Lobbying & Alignment' },
+  { id: 43, file: 'DSC_0350.jpg', chapter: 'Bilateral Caucus', title: 'Informal Consultation in Recess' },
+  { id: 44, file: 'DSC_0356.jpg', chapter: 'Bilateral Caucus', title: 'Final Sponsorship Sign-Off' },
+  { id: 45, file: 'DSC_0370.jpg', chapter: 'Awards & Plenary', title: 'Closing Plenary Convenes' },
+  { id: 46, file: 'DSC_0372.jpg', chapter: 'Awards & Plenary', title: 'Announcement of High Commendations' },
+  { id: 47, file: 'DSC_0379.jpg', chapter: 'Awards & Plenary', title: 'Best Delegate Felicitation' },
+  { id: 48, file: 'DSC_0382.jpg', chapter: 'Awards & Plenary', title: 'Honorable Mentions Awarded' },
+  { id: 49, file: 'DSC_0387.jpg', chapter: 'Awards & Plenary', title: 'Executive Board Commendation' },
+  { id: 50, file: 'DSC_0389.jpg', chapter: 'Awards & Plenary', title: 'MUN 2025 Plenary Assembly' },
+].map((item, idx) => ({
+  ...item,
+  number: String(idx + 1).padStart(2, '0'),
+  image: `/images/mun-2025/${item.file}`,
+  thumb: `/images/mun-2025/thumbs/${item.file}`,
+  year: '2025',
+}));
+
+export default galleryPhotos;

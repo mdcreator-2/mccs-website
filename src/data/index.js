@@ -7,3 +7,4 @@ export * from './parties.js';
 export * from './team.js';
 export * from './rules.js';
 export * from './siteConfig.js';
+export * from './gallery.js';
