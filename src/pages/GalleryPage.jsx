@@ -12,7 +12,6 @@ import {
   Film,
   Download,
   Layers,
-  ArrowRight,
 } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -220,15 +219,12 @@ export default function GalleryPage() {
                   </span>
                 </div>
 
-                {/* Bottom Title Bar Overlay */}
+                {/* Bottom Bar Overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                   <div>
-                    <span className="font-sans text-xs uppercase tracking-widest text-accent-gold mb-1 block">
-                      NIT Patna MUN 2025 Archive · 35mm Digital Plate
+                    <span className="font-sans text-xs uppercase tracking-widest text-accent-gold block">
+                      NIT Patna MUN 2025 Archive · 35mm Digital Plate {currentTheaterPhoto.number} of {allPhotos.length}
                     </span>
-                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-white tracking-tight">
-                      {currentTheaterPhoto.title}
-                    </h3>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -366,27 +362,12 @@ export default function GalleryPage() {
                     </span>
                   </div>
 
-                  {/* Hover Reveal: Clean Vignette, Title & View Plate Icon (No tags or chips) */}
-                  <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-5 bg-gradient-to-t from-[#070F18]/95 via-[#070F18]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    {/* Top Right Expand Icon */}
-                    <div className="flex justify-end">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/80 text-accent-gold border border-accent-gold/40 shadow">
-                        <Maximize2 size={13} />
-                      </span>
-                    </div>
-
-                    {/* Bottom Title & Action Cue */}
-                    <div>
-                      <h4 className="font-serif text-sm sm:text-base font-bold text-white tracking-tight drop-shadow">
-                        {photo.title}
-                      </h4>
-                      <div className="mt-1 flex items-center justify-between text-[11px] font-sans text-accent-gold/80">
-                        <span>NIT Patna MUN 2025</span>
-                        <span className="inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform font-medium">
-                          Inspect <ArrowRight size={11} />
-                        </span>
-                      </div>
-                    </div>
+                  {/* Hover Reveal: Clean Vignette & Inspect Button (No text title) */}
+                  <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px]">
+                    <span className="flex items-center gap-2 rounded-full border border-accent-gold/40 bg-ink/85 px-4 py-2 text-xs font-sans font-medium text-accent-gold shadow-xl transition-transform duration-300 group-hover:scale-105">
+                      <Maximize2 size={13} />
+                      <span>View Plate</span>
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -501,16 +482,16 @@ export default function GalleryPage() {
               </button>
             </div>
 
-            {/* Bottom Bar: Title & Scrollable Filmstrip Scrubber */}
+            {/* Bottom Bar: Metadata & Scrollable Filmstrip Scrubber */}
             <div
               className="border-t border-accent-gold/20 pt-3 flex flex-col gap-2.5"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
-                  {currentLightboxPhoto.title}
-                </h3>
-                <span className="font-sans text-xs text-accent-gold/80">
+                <span className="font-mono text-xs text-accent-gold tracking-wider">
+                  NIT Patna MUN 2025 · Archival Plate {currentLightboxPhoto.number} / {allPhotos.length}
+                </span>
+                <span className="font-sans text-xs text-white/50">
                   Use ← and → arrow keys to navigate
                 </span>
               </div>
