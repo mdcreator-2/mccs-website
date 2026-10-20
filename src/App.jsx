@@ -8,6 +8,8 @@ import AboutPage from './pages/AboutPage';
 import RulebookPage from './pages/RulebookPage';
 import TeamPage from './pages/TeamPage';
 import GalleryPage from './pages/GalleryPage';
+import LoadingScreen from './components/ui/LoadingScreen';
+import { LoadingProvider } from './context/LoadingContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -19,10 +21,11 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AppContent() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-text-primary">
       <ScrollToTop />
+      <LoadingScreen />
       <Navbar />
       <main className="flex-1">
         <Routes>
@@ -38,6 +41,14 @@ function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <LoadingProvider>
+      <AppContent />
+    </LoadingProvider>
   );
 }
 

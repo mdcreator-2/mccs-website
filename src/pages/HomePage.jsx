@@ -7,6 +7,7 @@ import CountdownSection from '../components/home/CountdownSection';
 import CommitteeOverviewSection from '../components/home/CommitteeOverviewSection';
 import HighlightsSection from '../components/home/HighlightsSection';
 import useTypewriter from '../hooks/useTypewriter';
+import { useLoading } from '../context/LoadingContext';
 
 import { siteConfig } from '../data/siteConfig';
 
@@ -15,6 +16,8 @@ import { siteConfig } from '../data/siteConfig';
    ═══════════════════════════════════════════════════════════════ */
 
 export default function HomePage() {
+  const { isLoaded } = useLoading();
+
   /* ── Typewriter ── */
   const [heroReady, setHeroReady] = useState(false);
   const { displayText, cursorVisible } = useTypewriter(
@@ -22,11 +25,12 @@ export default function HomePage() {
     { speed: 45, startDelay: 200, enabled: heroReady },
   );
 
-  /* Trigger typewriter after hero title animates in */
+  /* Trigger typewriter only after loading screen clears and hero animates in */
   useEffect(() => {
-    const t = setTimeout(() => setHeroReady(true), 900);
+    if (!isLoaded) return;
+    const t = setTimeout(() => setHeroReady(true), 850);
     return () => clearTimeout(t);
-  }, []);
+  }, [isLoaded]);
 
   return (
     <main className="overflow-hidden">
@@ -39,10 +43,14 @@ export default function HomePage() {
             alt=""
             aria-hidden="true"
             initial={{ scale: 1.08, opacity: 0 }}
-            animate={{
-              scale: [1.01, 1.04, 1.01],
-              opacity: [0.55, 0.68, 0.55],
-            }}
+            animate={
+              isLoaded
+                ? {
+                    scale: [1.01, 1.04, 1.01],
+                    opacity: [0.55, 0.68, 0.55],
+                  }
+                : { scale: 1.08, opacity: 0 }
+            }
             transition={{
               scale: { duration: 24, repeat: Infinity, ease: 'easeInOut' },
               opacity: { duration: 12, repeat: Infinity, ease: 'easeInOut' },
@@ -94,7 +102,7 @@ export default function HomePage() {
           {/* Gold accent rule above title */}
           <motion.div
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
+            animate={{ scaleX: isLoaded ? 1 : 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="mb-4 h-px w-20 origin-center bg-accent-gold/60"
           />
@@ -102,8 +110,12 @@ export default function HomePage() {
           {/* Golden MUN Logo — large and commanding hero emblem */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
+            animate={
+              isLoaded
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.88, y: 15 }
+            }
+            transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
             className="relative my-1 flex items-center justify-center"
           >
             {/* Ambient gold glow behind the emblem */}
@@ -119,7 +131,7 @@ export default function HomePage() {
           {/* Typewriter text */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: isLoaded ? 1 : 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
             className="mt-4 min-h-[1.75rem] flex items-center justify-center"
           >
@@ -135,8 +147,8 @@ export default function HomePage() {
           {/* Organized by with Expresso Club Logo */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.5 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ delay: 0.95, duration: 0.5 }}
             className="mt-3 flex items-center justify-center gap-2.5 font-body text-sm text-white/75 tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]"
           >
             <span>Organized by</span>
@@ -153,16 +165,16 @@ export default function HomePage() {
           {/* Gold accent rule below text */}
           <motion.div
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 1.2, duration: 0.5, ease: 'easeOut' }}
+            animate={{ scaleX: isLoaded ? 1 : 0 }}
+            transition={{ delay: 1.15, duration: 0.5, ease: 'easeOut' }}
             className="mt-6 h-px w-16 origin-center bg-accent-gold/50"
           />
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.5 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ delay: 1.35, duration: 0.5 }}
             className="mt-7 flex flex-wrap items-center justify-center gap-4"
           >
             {/* <GlowButton to="/committees" variant="gold">
