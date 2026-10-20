@@ -229,7 +229,7 @@ function DelegationMatrix({ p5, e10, invited }) {
         <SectionHeading
           light
           title="Permanent Members (P5)"
-          subtitle="The five permanent members of the Security Council, each holding veto power."
+          subtitle="The five permanent members of the Security Council."
         />
       </ScrollReveal>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
