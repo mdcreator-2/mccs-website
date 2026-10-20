@@ -35,7 +35,7 @@ function Navbar() {
           {/* Ambient gold glow behind the emblem */}
           <div className="pointer-events-none absolute -inset-1 rounded-full bg-accent-gold/15 blur-md transition-all duration-300 group-hover:bg-accent-gold/30 group-hover:blur-lg" />
           <img
-            src="/nitp_logo_modified-Photoroom.png"
+            src="/images/logos/nitp-logo.png"
             alt="National Institute of Technology Patna Logo"
             className="relative z-10 h-10 w-10 sm:h-11 sm:w-11 object-contain drop-shadow-[0_0_10px_rgba(184,151,106,0.5)] transition-transform duration-300 group-hover:scale-105"
           />

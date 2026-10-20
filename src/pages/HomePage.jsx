@@ -35,7 +35,7 @@ export default function HomePage() {
         {/* Luminous Gold Global Network Map Background */}
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <motion.img
-            src="/Luminous%20Gold%20Global%20Network%20Map.png"
+            src="/images/backgrounds/Luminous%20Gold%20Global%20Network%20Map.png"
             alt=""
             aria-hidden="true"
             initial={{ scale: 1.08, opacity: 0 }}
@@ -110,7 +110,7 @@ export default function HomePage() {
             <div className="pointer-events-none absolute h-52 w-52 sm:h-60 sm:w-60 md:h-72 md:w-72 rounded-full bg-accent-gold/25 blur-3xl" />
             <h1 className="sr-only">MCCS 2026 — NIT Patna MUN</h1>
             <img
-              src="/Logo-mun-gold.webp"
+              src="/images/logos/Logo-mun-gold.png"
               alt="NIT Patna MUN Golden Emblem"
               className="relative z-10 h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 object-contain drop-shadow-[0_0_35px_rgba(184,151,106,0.45)] transition-transform duration-500 hover:scale-[1.02]"
             />
@@ -141,7 +141,7 @@ export default function HomePage() {
           >
             <span>Organized by</span>
             <img
-              src="/expresso-logo.webp"
+              src="/images/logos/expresso-logo.webp"
               alt="Expresso Club Logo"
               className="h-6 w-auto inline-block object-contain opacity-95 transition-opacity hover:opacity-100"
             />

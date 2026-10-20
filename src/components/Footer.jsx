@@ -57,7 +57,7 @@ export default function Footer() {
             <Link to="/" className="inline-block group" aria-label="NIT Patna MUN MCCS Home">
               <div className="relative flex items-center gap-3">
                 <img
-                  src="/Logo-mun-white.webp"
+                  src="/images/logos/Logo-mun-white.png"
                   alt="NIT Patna MUN Logo"
                   className="h-14 w-14 sm:h-16 sm:w-16 object-contain drop-shadow-[0_0_15px_rgba(184,151,106,0.35)] transition-transform duration-300 group-hover:scale-105"
                 />
@@ -79,7 +79,7 @@ export default function Footer() {
 
             <div className="mt-5 flex items-center gap-3 pt-4 border-t border-white/10">
               <img
-                src="/expresso-logo.webp"
+                src="/images/logos/expresso-logo.webp"
                 alt="Expresso Club Logo"
                 className="h-8 w-auto object-contain opacity-85 transition-opacity hover:opacity-100"
               />

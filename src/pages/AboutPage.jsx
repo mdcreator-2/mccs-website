@@ -58,7 +58,7 @@ export default function AboutPage() {
             <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/30 bg-accent-gold/10 p-2 shadow-inner">
                 <img
-                  src="/Logo-mun-gold.webp"
+                  src="/images/logos/Logo-mun-gold.png"
                   alt="MCCS Crest"
                   className="h-16 w-16 object-contain drop-shadow-[0_0_12px_rgba(184,151,106,0.4)]"
                 />
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-4 mb-5">
                   <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-accent-gold/30 bg-ink p-2">
                     <img
-                      src="/expresso-logo.webp"
+                      src="/images/logos/expresso-logo.webp"
                       alt="Expresso Club Logo"
                       className="h-12 w-auto object-contain opacity-95 transition-transform group-hover:scale-105"
                     />
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-4 mb-5">
                   <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-accent-gold/30 bg-ink p-2">
                     <img
-                      src="/nitp_logo_modified-Photoroom.png"
+                      src="/images/logos/nitp-logo.png"
                       alt="NIT Patna Logo"
                       className="h-12 w-12 object-contain drop-shadow-[0_0_10px_rgba(184,151,106,0.35)] transition-transform group-hover:scale-105"
                     />
