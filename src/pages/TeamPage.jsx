@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Landmark, Award, Mail, Instagram, Linkedin, Sparkles, UserCheck, ArrowRight } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
@@ -8,14 +8,31 @@ import { siteConfig } from '../data/siteConfig';
 import { teamMembers, teamTiers } from '../data/team';
 
 function TeamMemberAvatar({ member }) {
-  const [imgError, setImgError] = useState(false);
+  const localFallback = `/images/team/${member.id}.jpg`;
+  const [imgSrc, setImgSrc] = useState(member.photo || null);
+  const [hasFailed, setHasFailed] = useState(!member.photo);
 
-  if (member.photo && !imgError) {
+  useEffect(() => {
+    setImgSrc(member.photo || null);
+    setHasFailed(!member.photo);
+  }, [member.photo, member.id]);
+
+  const handleError = () => {
+    // If external CDN photo failed (e.g. ISP blocked), fallback to local copy saved in public/images/team
+    if (imgSrc && imgSrc !== localFallback) {
+      setImgSrc(localFallback);
+    } else {
+      setHasFailed(true);
+    }
+  };
+
+  if (imgSrc && !hasFailed) {
     return (
       <img
-        src={member.photo}
+        src={imgSrc}
         alt={member.name}
-        onError={() => setImgError(true)}
+        referrerPolicy="no-referrer"
+        onError={handleError}
         className="h-16 w-16 shrink-0 rounded-2xl object-cover border border-accent-gold/30 shadow-inner group-hover:border-accent-gold/60 transition-colors"
       />
     );

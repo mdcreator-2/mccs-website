@@ -129,7 +129,7 @@ export const teamMembers = [
     tier: 'Organizing Secretariat',
     committee: 'Expresso Club Directorate',
     bio: 'Oversees digital architecture, web systems, technical infrastructure, and automated delegate registry platforms for MCCS 2026.',
-    photo: null,
+    photo: '/images/team/head-tech.jpg',
   },
   {
     id: 'head-design',
