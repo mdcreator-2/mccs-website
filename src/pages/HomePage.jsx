@@ -128,6 +128,18 @@ export default function HomePage() {
             />
           </motion.div>
 
+          {/* Hero Title — MUN 3.0 */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.35 }}
+            className="mt-3 md:mt-4"
+          >
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.18em] uppercase text-accent-gold-light select-none [text-shadow:0_2px_4px_rgba(0,0,0,0.8),0_4px_20px_rgba(184,151,106,0.35)]">
+              MUN 3.0
+            </h2>
+          </motion.div>
+
           {/* Typewriter text */}
           <motion.div
             initial={{ opacity: 0 }}
