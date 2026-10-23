@@ -17,12 +17,26 @@ import ScrollReveal from '../components/ui/ScrollReveal';
 import SectionHeading from '../components/ui/SectionHeading';
 import { galleryPhotos } from '../data/gallery';
 
+const MOSAIC_SPANS = [
+  'col-span-2 lg:col-span-2 lg:row-span-2', // 0: Plate 04 - Council Dais (Hero 1)
+  'col-span-1 lg:col-span-2 lg:row-span-1', // 1: Plate 05 - Ceremonial Commemoration
+  'col-span-1 lg:col-span-1 lg:row-span-1', // 2: Plate 06 - Executive Board Assembly
+  'col-span-1 lg:col-span-1 lg:row-span-1', // 3: Plate 09 - Dignitary Felicitation
+  'col-span-1 lg:col-span-1 lg:row-span-1', // 4: Plate 10 - Presiding Officers
+  'col-span-2 lg:col-span-1 lg:row-span-1', // 5: Plate 12 - Adoption of Agenda
+  'col-span-1 lg:col-span-2 lg:row-span-2', // 6: Plate 16 - Floor Interpellation (Hero 2)
+  'col-span-1 lg:col-span-2 lg:row-span-1', // 7: Plate 22 - Parliamentary Debate
+  'col-span-1 lg:col-span-1 lg:row-span-1', // 8: Plate 33 - Decorum Enforced
+  'col-span-1 lg:col-span-2 lg:row-span-1', // 9: Plate 46 - Announcement of Commendations
+  'col-span-2 lg:col-span-1 lg:row-span-1', // 10: Plate 49 - Executive Board Commendation
+];
+
 export default function GalleryPage() {
   const [viewMode, setViewMode] = useState('gallery'); // 'gallery' | 'theater'
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [theaterIndex, setTheaterIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(24);
+  const [visibleCount, setVisibleCount] = useState(galleryPhotos.length);
 
   const theaterTimerRef = useRef(null);
   const filmstripRef = useRef(null);
@@ -145,7 +159,7 @@ export default function GalleryPage() {
               <span>Historical Archive · NIT Patna MUN 2025</span>
             </div>
             <p className="font-body text-sm text-white/70 leading-relaxed max-w-2xl mx-auto">
-              Presenting 50 authentic archival plates from the previous MUN edition at NIT Patna. Experience the diplomacy, floor caucuses, dais decorum, and plenary awards.
+              Presenting {allPhotos.length} authentic archival plates from the previous MUN edition at NIT Patna. Experience the diplomacy, floor caucuses, dais decorum, and plenary awards.
             </p>
           </div>
         </ScrollReveal>
@@ -154,7 +168,7 @@ export default function GalleryPage() {
         <div className="mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-accent-gold/15 pb-6">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs tracking-wider text-accent-gold/90 bg-accent-gold/10 px-3 py-1.5 rounded-lg border border-accent-gold/20">
-              50 Archival Plates
+              {allPhotos.length} Archival Plates
             </span>
           </div>
 
@@ -162,14 +176,15 @@ export default function GalleryPage() {
           <div className="flex items-center gap-2 bg-[#0F1923] p-1.5 rounded-xl border border-accent-gold/20 shadow-inner">
             <button
               onClick={() => setViewMode('gallery')}
-              title="Exhibition Gallery Wall"
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${viewMode === 'gallery'
+              title="Diplomatic Mosaic Wall"
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans transition-all ${
+                viewMode === 'gallery'
                   ? 'bg-accent-gold/20 text-accent-gold border border-accent-gold/40 font-semibold shadow-sm'
                   : 'text-white/60 hover:text-white'
-                }`}
+              }`}
             >
               <Grid3X3 size={14} />
-              <span>Exhibition Wall</span>
+              <span>Mosaic Wall</span>
             </button>
 
             <button
@@ -322,51 +337,63 @@ export default function GalleryPage() {
           </div>
         )}
 
-        {/* ───── VIEW 2: SEAMLESS EXHIBITION GALLERY WALL (GAP-FREE) ───── */}
+        {/* ───── VIEW 2: SEAMLESS DIPLOMATIC MOSAIC VIEW (ZERO GAP) ───── */}
         {viewMode === 'gallery' && (
           <div className="mb-16">
-            {/* Perfectly uniform 3:2 landscape grid with zero awkward row-height gaps */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-              {allPhotos.slice(0, visibleCount).map((photo, idx) => (
-                <motion.div
-                  key={photo.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: (idx % 8) * 0.02 }}
-                  onClick={() => setLightboxIndex(idx)}
-                  className="group relative aspect-[3/2] overflow-hidden rounded-xl border border-accent-gold/25 bg-[#0F1923] shadow-md cursor-pointer transition-all duration-300 hover:border-accent-gold/70 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
-                >
-                  {/* Corner Registration Marks */}
-                  <span className="pointer-events-none absolute top-2 left-2 z-20 h-1.5 w-1.5 border-l border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                  <span className="pointer-events-none absolute top-2 right-2 z-20 h-1.5 w-1.5 border-r border-t border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                  <span className="pointer-events-none absolute bottom-2 left-2 z-20 h-1.5 w-1.5 border-l border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
-                  <span className="pointer-events-none absolute bottom-2 right-2 z-20 h-1.5 w-1.5 border-r border-b border-accent-gold/40 group-hover:border-accent-gold transition-colors" />
+            <div className="relative overflow-hidden rounded-2xl border border-accent-gold/30 bg-[#0B1520] shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
+              {/* Corner Registration Accents */}
+              <span className="pointer-events-none absolute top-3 left-3 z-20 h-2 w-2 border-l border-t border-accent-gold/50" />
+              <span className="pointer-events-none absolute top-3 right-3 z-20 h-2 w-2 border-r border-t border-accent-gold/50" />
+              <span className="pointer-events-none absolute bottom-3 left-3 z-20 h-2 w-2 border-l border-b border-accent-gold/50" />
+              <span className="pointer-events-none absolute bottom-3 right-3 z-20 h-2 w-2 border-r border-b border-accent-gold/50" />
 
-                  {/* Image */}
-                  <img
-                    src={photo.thumb}
-                    alt={photo.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 auto-rows-[160px] sm:auto-rows-[200px] lg:auto-rows-[230px]">
+                {allPhotos.map((photo, idx) => (
+                  <motion.div
+                    key={photo.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35, delay: idx * 0.03 }}
+                    onClick={() => setLightboxIndex(idx)}
+                    className={`group relative overflow-hidden bg-[#070F18] cursor-pointer ${
+                      MOSAIC_SPANS[idx] || 'col-span-1 row-span-1'
+                    }`}
+                  >
+                    {/* Image */}
+                    <img
+                      src={photo.image}
+                      alt={photo.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    />
 
-                  {/* Subtle Permanent Accession Tag (bottom right) */}
-                  <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
-                    <span className="font-mono text-[10px] tracking-wider text-accent-gold/90 bg-ink/75 backdrop-blur-sm px-2 py-0.5 rounded border border-accent-gold/20 shadow">
-                      № {photo.number}
-                    </span>
-                  </div>
+                    {/* Gradient Overlay & Metadata */}
+                    <div className="absolute inset-0 z-10 flex flex-col justify-between p-3 sm:p-4 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100 group-hover:from-ink/95 group-hover:via-ink/40">
+                      {/* Top Plate Badge */}
+                      <span className="self-start font-mono text-[10px] sm:text-xs tracking-wider text-accent-gold/95 bg-black/70 backdrop-blur-sm px-2.5 py-0.5 rounded border border-accent-gold/25 shadow">
+                        PLATE {photo.number}
+                      </span>
 
-                  {/* Hover Reveal: Clean Vignette & Inspect Button (No text title) */}
-                  <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px]">
-                    <span className="flex items-center gap-2 rounded-full border border-accent-gold/40 bg-ink/85 px-4 py-2 text-xs font-sans font-medium text-accent-gold shadow-xl transition-transform duration-300 group-hover:scale-105">
-                      <Maximize2 size={13} />
-                      <span>View Plate</span>
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Bottom Title & Action */}
+                      <div className="flex items-end justify-between gap-2">
+                        <div>
+                          <span className="block font-sans text-xs sm:text-sm font-semibold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                            {photo.title}
+                          </span>
+                          <span className="block font-sans text-[10px] text-accent-gold/80 uppercase tracking-widest mt-0.5">
+                            Archival Plate {photo.number}
+                          </span>
+                        </div>
+
+                        <span className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border border-accent-gold/40 bg-ink/80 text-accent-gold opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105 shadow-lg">
+                          <Maximize2 size={13} />
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         )}
