@@ -123,13 +123,13 @@ export const teamMembers = [
   },
   {
     id: 'head-tech',
-    name: 'Mohmmad Ameer',
-    initials: 'MA',
+    name: 'Aisha Javed',
+    initials: 'AJ',
     role: 'Head of Tech',
     tier: 'Organizing Secretariat',
     committee: 'Expresso Club Directorate',
     bio: 'Oversees digital architecture, web systems, technical infrastructure, and automated delegate registry platforms for MCCS 2026.',
-    photo: '/images/team/head-tech.jpg',
+    photo: null,
   },
   {
     id: 'head-design',
