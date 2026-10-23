@@ -135,7 +135,7 @@ export default function HomePage() {
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.35 }}
             className="mt-3 md:mt-4"
           >
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.18em] uppercase text-accent-gold-light select-none [text-shadow:0_2px_4px_rgba(0,0,0,0.8),0_6px_18px_rgba(0,0,0,0.6)]">
+            <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] text-[#EAD8B5] select-none [text-shadow:0_1px_2px_rgba(255,255,255,0.2),0_2px_4px_rgba(0,0,0,0.8),0_8px_24px_rgba(0,0,0,0.7)]">
               MUN 3.0
             </h2>
           </motion.div>

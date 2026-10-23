@@ -27,6 +27,7 @@ export default {
         ink: '#0F1923',
       },
       fontFamily: {
+        cinzel: ['"Cinzel"', 'serif'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['"Source Serif 4"', 'Georgia', 'serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
