@@ -60,3 +60,12 @@ $RECYCLE.BIN/
 .cache/
 .parcel-cache/
 .turbo/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# AI tooling caches
+.agents/
+.impeccable/
